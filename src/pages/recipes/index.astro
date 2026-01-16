@@ -44,35 +44,46 @@ const formatYield = (yieldData?: (typeof recipes)[number]['data']['yield']): str
 
 			<section>
 				<ul class="recipe-list">
-					{sortedRecipes.map((recipe) => (
-						<li class="recipe-card">
-							<h3>
-								<a href={`/recipes/${recipe.id}/`}>{recipe.data.title}</a>
-							</h3>
-							<p>{recipe.data.description}</p>
-							<dl>
-								<dt>タイプ</dt>
-								<dd>{recipe.data.recipeType}</dd>
-								<dt>人数</dt>
-								<dd>{recipe.data.servings ? `${recipe.data.servings}人分` : '—'}</dd>
-								<dt>できあがり量</dt>
-								<dd>{formatYield(recipe.data.yield)}</dd>
-								<dt>準備時間</dt>
-								<dd>{formatMinutes(recipe.data.prepTime)}</dd>
-								<dt>調理時間</dt>
-								<dd>{formatMinutes(recipe.data.cookTime)}</dd>
-								<dt>カテゴリ</dt>
-								<dd>{recipe.data.category ?? '—'}</dd>
-							</dl>
-							{recipe.data.tags.length > 0 && (
-								<ul class="tag-list">
-									{recipe.data.tags.map((tag) => (
-										<li>{tag}</li>
-									))}
-								</ul>
-							)}
-						</li>
-					))}
+					{sortedRecipes.map((recipe) => {
+						const totalTime = (recipe.data.prepTime ?? 0) + (recipe.data.cookTime ?? 0);
+						const displayTags = recipe.data.tags.slice(0, 3);
+
+						return (
+							<li class="recipe-card">
+								<a href={`/recipes/${recipe.id}/`} class="card-link">
+									<h3>{recipe.data.title}</h3>
+									<p class="description">{recipe.data.description}</p>
+									<div class="recipe-meta">
+										{totalTime > 0 && (
+											<div class="meta-item">
+												<span class="material-icons">schedule</span>
+												<span>{totalTime}分</span>
+											</div>
+										)}
+										{recipe.data.servings && (
+											<div class="meta-item">
+												<span class="material-icons">people</span>
+												<span>{recipe.data.servings}人分</span>
+											</div>
+										)}
+										{recipe.data.category && (
+											<div class="meta-item">
+												<span class="material-icons">category</span>
+												<span>{recipe.data.category}</span>
+											</div>
+										)}
+									</div>
+									{displayTags.length > 0 && (
+										<ul class="tag-list">
+											{displayTags.map((tag) => (
+												<li>{tag}</li>
+											))}
+										</ul>
+									)}
+								</a>
+							</li>
+						);
+					})}
 				</ul>
 			</section>
 		</main>
@@ -88,42 +99,86 @@ const formatYield = (yieldData?: (typeof recipes)[number]['data']['yield']): str
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		font-size: 0.9rem;
-		color: rgba(var(--gray), 1);
+		color: rgb(var(--gray));
 	}
 	.recipe-list {
 		list-style: none;
 		padding: 0;
-		margin: 0;
+		margin: 0 0 2rem;
 		display: grid;
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: 2rem;
 	}
 	.recipe-card {
 		background: white;
-		border-radius: 12px;
+		border-radius: 16px;
 		box-shadow: var(--box-shadow);
-		padding: 1.5rem;
+		transition: transform 0.2s ease, box-shadow 0.3s ease;
+		overflow: hidden;
+	}
+	.recipe-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 4px 16px rgba(var(--gray), 25%), 0 12px 28px rgba(var(--gray), 30%);
+	}
+	.card-link {
+		display: block;
+		padding: 1.75rem;
+		text-decoration: none;
+		color: inherit;
 	}
 	.recipe-card h3 {
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.75rem;
+		font-size: 1.5rem;
+		color: rgb(var(--black));
 	}
-	.recipe-card dl {
-		display: grid;
-		grid-template-columns: max-content 1fr;
-		gap: 0.25rem 1rem;
-		margin: 1rem 0 0;
+	.description {
+		margin-bottom: 1.25rem;
+		color: rgb(var(--gray));
+		line-height: 1.5;
+		font-size: 0.95rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.recipe-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-bottom: 1rem;
+		padding-top: 0.5rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.meta-item {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		color: rgb(var(--gray-dark));
+	}
+	.meta-item .material-icons {
+		font-size: 18px;
+		color: rgb(var(--accent));
 	}
 	.tag-list {
 		list-style: none;
 		padding: 0;
-		margin: 1rem 0 0;
+		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
 	.tag-list li {
-		background: rgba(var(--gray-light), 0.8);
-		padding: 0.2rem 0.6rem;
+		background: rgb(var(--gray-light));
+		padding: 0.25rem 0.75rem;
 		border-radius: 999px;
-		font-size: 0.85rem;
+		font-size: 0.8rem;
+		color: rgb(var(--gray-dark));
+	}
+	@media (max-width: 720px) {
+		.recipe-list {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
 	}
 </style>

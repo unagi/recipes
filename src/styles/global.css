@@ -4,34 +4,33 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+/* Google Fonts: Noto Sans JP + Material Icons */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Material+Icons&display=swap');
+
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	/* アクセントカラー: 温かみのあるオレンジ */
+	--accent: 255, 107, 53;           /* #ff6b35 */
+	--accent-dark: 230, 81, 40;       /* #e65128 */
+
+	/* テキストカラー: ダークブラウン */
+	--black: 90, 74, 58;              /* #5a4a3a */
+
+	/* グレー: ウォームグレー */
+	--gray: 155, 139, 126;            /* #9b8b7e */
+	--gray-light: 245, 240, 235;      /* #f5f0eb */
+	--gray-dark: 90, 74, 58;          /* #5a4a3a */
+
+	/* 背景グラデーション: ベージュ・クリーム系 */
+	--background-warm: 254, 245, 231; /* #fef5e7 */
+	--gray-gradient: rgba(var(--background-warm), 50%), #fff;
+
+	/* ボックスシャドウ: より柔らかく */
 	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+		0 2px 8px rgba(var(--gray), 20%), 0 8px 20px rgba(var(--gray), 25%), 0 16px 28px
+		rgba(var(--gray), 25%);
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: "Noto Sans JP", "Noto Sans", system-ui, -apple-system, sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -103,7 +102,7 @@ table {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
+	border-radius: 16px;
 }
 code {
 	padding: 2px 5px;
@@ -112,7 +111,7 @@ code {
 }
 pre {
 	padding: 1.5em;
-	border-radius: 8px;
+	border-radius: 12px;
 }
 pre > code {
 	all: unset;
@@ -152,4 +151,33 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+/* Material Icons */
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	vertical-align: middle;
+	/* アクセントカラーを適用 */
+	color: rgb(var(--accent));
+}
+
+/* アイコンとテキストの組み合わせ用 */
+.icon-text {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.icon-text .material-icons {
+	font-size: 20px;
 }

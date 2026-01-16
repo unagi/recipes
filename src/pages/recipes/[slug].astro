@@ -56,26 +56,69 @@ const formatYield = (
 				</header>
 
 				<section class="recipe-meta">
-					<dl>
-						<dt>人数</dt>
-						<dd>{recipe.data.servings ? `${recipe.data.servings}人分` : '—'}</dd>
-						<dt>できあがり量</dt>
-						<dd>{formatYield(recipe.data.yield)}</dd>
-						<dt>準備時間</dt>
-						<dd>{formatMinutes(recipe.data.prepTime)}</dd>
-						<dt>調理時間</dt>
-						<dd>{formatMinutes(recipe.data.cookTime)}</dd>
-						<dt>カテゴリ</dt>
-						<dd>{recipe.data.category ?? '—'}</dd>
-						<dt>タグ</dt>
-						<dd>{recipe.data.tags.length ? recipe.data.tags.join(' / ') : '—'}</dd>
-						<dt>公開日</dt>
-						<dd>{recipe.data.publishedDate.toLocaleDateString('ja-JP')}</dd>
-					</dl>
+					<div class="meta-grid">
+						{recipe.data.servings && (
+							<div class="meta-item">
+								<span class="material-icons">people</span>
+								<div>
+									<dt>人数</dt>
+									<dd>{recipe.data.servings}人分</dd>
+								</div>
+							</div>
+						)}
+						{recipe.data.yield && (
+							<div class="meta-item">
+								<span class="material-icons">restaurant</span>
+								<div>
+									<dt>できあがり量</dt>
+									<dd>{formatYield(recipe.data.yield)}</dd>
+								</div>
+							</div>
+						)}
+						{recipe.data.prepTime && (
+							<div class="meta-item">
+								<span class="material-icons">schedule</span>
+								<div>
+									<dt>準備時間</dt>
+									<dd>{formatMinutes(recipe.data.prepTime)}</dd>
+								</div>
+							</div>
+						)}
+						{recipe.data.cookTime && (
+							<div class="meta-item">
+								<span class="material-icons">timer</span>
+								<div>
+									<dt>調理時間</dt>
+									<dd>{formatMinutes(recipe.data.cookTime)}</dd>
+								</div>
+							</div>
+						)}
+						{recipe.data.category && (
+							<div class="meta-item">
+								<span class="material-icons">category</span>
+								<div>
+									<dt>カテゴリ</dt>
+									<dd>{recipe.data.category}</dd>
+								</div>
+							</div>
+						)}
+						{recipe.data.tags.length > 0 && (
+							<div class="meta-item tags-item">
+								<span class="material-icons">local_offer</span>
+								<div>
+									<dt>タグ</dt>
+									<dd class="tags">{recipe.data.tags.join(', ')}</dd>
+								</div>
+							</div>
+						)}
+					</div>
 				</section>
 
-				<section>
-					<h2>材料</h2>
+				<section class="content-section">
+					<h2>
+						<span class="material-icons">shopping_cart</span>
+						材料
+					</h2>
 					<ul>
 						{recipe.data.ingredients.map((ingredient) => (
 							<li>
@@ -86,8 +129,11 @@ const formatYield = (
 					</ul>
 				</section>
 
-				<section>
-					<h2>手順</h2>
+				<section class="content-section">
+					<h2>
+						<span class="material-icons">format_list_numbered</span>
+						手順
+					</h2>
 					<ol>
 						{recipe.data.steps.map((step) => (
 							<li>{step}</li>
@@ -96,8 +142,11 @@ const formatYield = (
 				</section>
 
 				{recipe.data.equipment.length > 0 && (
-					<section>
-						<h2>道具</h2>
+					<section class="content-section">
+						<h2>
+							<span class="material-icons">kitchen</span>
+							道具
+						</h2>
 						<ul>
 							{recipe.data.equipment.map((item) => (
 								<li>{item}</li>
@@ -106,8 +155,11 @@ const formatYield = (
 					</section>
 				)}
 
-				<section class="prose">
-					<h2>補足</h2>
+				<section class="content-section prose">
+					<h2>
+						<span class="material-icons">info</span>
+						補足
+					</h2>
 					<Content />
 				</section>
 			</article>
@@ -119,32 +171,102 @@ const formatYield = (
 <style>
 	.recipe-header {
 		margin-bottom: 2.5rem;
+		text-align: center;
 	}
 	.recipe-type {
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 		font-size: 0.9rem;
-		color: rgba(var(--gray), 1);
+		color: rgb(var(--gray));
 		margin-bottom: 0.5rem;
 	}
 	.description {
-		font-size: 1.1rem;
-		margin-top: 0.75rem;
+		font-size: 1.15rem;
+		margin-top: 1rem;
+		color: rgb(var(--gray));
+		line-height: 1.6;
 	}
 	.recipe-meta {
 		background: white;
-		border-radius: 12px;
+		border-radius: 16px;
 		box-shadow: var(--box-shadow);
-		padding: 1.5rem;
-		margin-bottom: 2.5rem;
+		padding: 2rem;
+		margin-bottom: 3rem;
 	}
-	.recipe-meta dl {
+	.meta-grid {
 		display: grid;
-		grid-template-columns: max-content 1fr;
-		gap: 0.5rem 1.5rem;
-		margin: 0;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.5rem;
 	}
-	.recipe-meta dt {
-		font-weight: 700;
+	.meta-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+	.meta-item.tags-item {
+		grid-column: 1 / -1;
+	}
+	.meta-item .material-icons {
+		font-size: 24px;
+		color: rgb(var(--accent));
+		flex-shrink: 0;
+		margin-top: 0.1rem;
+	}
+	.meta-item dt {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: rgb(var(--gray));
+		margin-bottom: 0.25rem;
+	}
+	.meta-item dd {
+		margin: 0;
+		font-size: 1rem;
+		color: rgb(var(--black));
+		font-weight: 500;
+	}
+	.meta-item .tags {
+		font-weight: 400;
+		color: rgb(var(--gray-dark));
+	}
+	.content-section {
+		margin-bottom: 3rem;
+	}
+	.content-section h2 {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 2px solid rgb(var(--gray-light));
+		color: rgb(var(--black));
+	}
+	.content-section h2 .material-icons {
+		font-size: 28px;
+		color: rgb(var(--accent));
+	}
+	.content-section ul,
+	.content-section ol {
+		background: white;
+		border-radius: 16px;
+		box-shadow: var(--box-shadow);
+		padding: 1.5rem 2rem 1.5rem 3rem;
+		margin: 0;
+		line-height: 1.8;
+	}
+	.content-section li {
+		margin-bottom: 0.75rem;
+		color: rgb(var(--gray-dark));
+	}
+	.content-section li:last-child {
+		margin-bottom: 0;
+	}
+	@media (max-width: 720px) {
+		.meta-grid {
+			grid-template-columns: 1fr;
+			gap: 1.25rem;
+		}
+		.recipe-header {
+			text-align: left;
+		}
 	}
 </style>

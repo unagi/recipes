@@ -20,15 +20,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			<section class="features">
 				<div class="feature-card">
-					<h2>📖 レシピ</h2>
+					<span class="material-icons feature-icon">restaurant_menu</span>
+					<h2>レシピ</h2>
 					<p>さまざまな料理のレシピを公開しています。材料、手順、調理時間など詳しい情報が確認できます。</p>
 					<a href="/recipes/" class="button">レシピ一覧を見る</a>
-				</div>
-
-				<div class="feature-card">
-					<h2>📝 ブログ</h2>
-					<p>料理に関する記事や、レシピ開発の裏話などを投稿しています。</p>
-					<a href="/blog/" class="button">ブログを見る</a>
 				</div>
 			</section>
 		</main>
@@ -46,35 +41,48 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		font-size: 3rem;
 		margin-bottom: 1rem;
 		line-height: 1.2;
+		color: rgb(var(--black));
 	}
 	.subtitle {
 		font-size: 1.25rem;
-		color: rgba(var(--gray), 1);
+		color: rgb(var(--gray));
 		max-width: 600px;
 		margin: 0 auto;
 	}
 	.features {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		display: flex;
+		justify-content: center;
 		gap: 2rem;
-		max-width: 800px;
+		max-width: 500px;
 		margin: 0 auto;
-		padding: 0 1rem;
+		padding: 0 1rem 2rem;
 	}
 	.feature-card {
 		background: white;
-		border-radius: 12px;
+		border-radius: 16px;
 		box-shadow: var(--box-shadow);
-		padding: 2rem;
+		padding: 2.5rem 2rem;
 		text-align: center;
+		transition: transform 0.2s ease, box-shadow 0.3s ease;
+	}
+	.feature-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 4px 16px rgba(var(--gray), 25%), 0 12px 28px rgba(var(--gray), 30%);
+	}
+	.feature-icon {
+		font-size: 64px !important;
+		color: rgb(var(--accent));
+		display: block;
+		margin-bottom: 1rem;
 	}
 	.feature-card h2 {
 		margin-bottom: 1rem;
-		font-size: 1.5rem;
+		font-size: 1.75rem;
+		color: rgb(var(--black));
 	}
 	.feature-card p {
 		margin-bottom: 1.5rem;
-		color: rgba(var(--gray), 1);
+		color: rgb(var(--gray));
 		line-height: 1.6;
 	}
 	.button {
@@ -82,14 +90,14 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		background: rgb(var(--accent));
 		color: white;
 		padding: 0.75rem 1.5rem;
-		border-radius: 8px;
+		border-radius: 12px;
 		text-decoration: none;
 		font-weight: 600;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
 	.button:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(var(--accent), 0.3);
+		box-shadow: 0 6px 16px rgba(var(--accent), 0.4);
 	}
 	@media (max-width: 720px) {
 		.hero h1 {
@@ -99,7 +107,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			font-size: 1rem;
 		}
 		.features {
-			grid-template-columns: 1fr;
+			padding-bottom: 1rem;
+		}
+		.feature-icon {
+			font-size: 48px !important;
 		}
 	}
 </style>
