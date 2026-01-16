@@ -1,63 +1,248 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={`About | ${SITE_TITLE}`} description="うなぎまるキッチンについて" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article class="about-container">
+				<header class="about-header">
+					<h1>うなぎまるキッチンについて</h1>
+				</header>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+				<section class="mascot-section">
+					<img src="/unagimaru.png" alt="うなぎまる" class="mascot-image" />
+					<div class="mascot-intro">
+						<h2>うなぎまる</h2>
+						<p>
+							おっとりまったり、優しくて穏やかな性格の金魚。<br />
+							美味しい料理でみんなを笑顔にするのが大好きです。
+						</p>
+					</div>
+				</section>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+				<section class="content-section">
+					<h2>
+						<span class="material-icons">restaurant</span>
+						私たちのキッチン
+					</h2>
+					<p>
+						「うなぎまるキッチン」は、家族で一緒に料理を楽しみ、試行錯誤しながら生まれたレシピを記録・共有するために始めたサイトです。
+					</p>
+					<p>
+						日々の食卓を彩る家庭料理から、ちょっと本格的な味わいを目指したメニューまで、私たちが実際に作って美味しかったレシピを公開しています。
+					</p>
+				</section>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+				<section class="content-section">
+					<h2>
+						<span class="material-icons">favorite</span>
+						大切にしていること
+					</h2>
+					<div class="values-grid">
+						<div class="value-card">
+							<span class="material-icons">science</span>
+							<h3>何度も試作を重ねる</h3>
+							<p>納得のいく味になるまで、何度でも作り直します。失敗も大切な経験です。</p>
+						</div>
+						<div class="value-card">
+							<span class="material-icons">public</span>
+							<h3>本場の味を再現</h3>
+							<p>お店や本場で食べた感動の味を、家庭でも楽しめるように研究しています。</p>
+						</div>
+						<div class="value-card">
+							<span class="material-icons">tune</span>
+							<h3>調理法と調味料の組み合わせ</h3>
+							<p>手順や調味料のバランスを工夫することで、本格的な味わいを目指します。</p>
+						</div>
+					</div>
+				</section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+				<section class="content-section">
+					<h2>
+						<span class="material-icons">people</span>
+						こんな方におすすめ
+					</h2>
+					<ul class="recommend-list">
+						<li>
+							<span class="material-icons">check_circle</span>
+							<span>家庭料理をもっと楽しみたい方</span>
+						</li>
+						<li>
+							<span class="material-icons">check_circle</span>
+							<span>料理が好きで、こだわりの味を追求したい方</span>
+						</li>
+						<li>
+							<span class="material-icons">check_circle</span>
+							<span>お店のような本格的な味を家で再現したい方</span>
+						</li>
+					</ul>
+				</section>
+
+				<section class="content-section">
+					<h2>
+						<span class="material-icons">chat</span>
+						最後に
+					</h2>
+					<p>
+						このサイトのレシピが、皆さんの食卓を少しでも豊かにできたら嬉しいです。
+					</p>
+					<p>
+						うなぎまると一緒に、美味しい料理を楽しみましょう！
+					</p>
+				</section>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.about-container {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	.about-header {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+	.about-header h1 {
+		font-size: 2.5rem;
+		color: rgb(var(--black));
+		margin-bottom: 0.5rem;
+	}
+	.mascot-section {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		background: white;
+		border-radius: 16px;
+		box-shadow: var(--box-shadow);
+		padding: 2.5rem;
+		margin-bottom: 3rem;
+	}
+	.mascot-image {
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		object-fit: cover;
+		flex-shrink: 0;
+		box-shadow: 0 4px 12px rgba(var(--gray), 20%);
+	}
+	.mascot-intro h2 {
+		font-size: 2rem;
+		color: rgb(var(--accent));
+		margin-bottom: 1rem;
+	}
+	.mascot-intro p {
+		font-size: 1.1rem;
+		line-height: 1.8;
+		color: rgb(var(--gray-dark));
+	}
+	.content-section {
+		margin-bottom: 3rem;
+	}
+	.content-section h2 {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 2px solid rgb(var(--gray-light));
+		color: rgb(var(--black));
+		font-size: 1.75rem;
+	}
+	.content-section h2 .material-icons {
+		font-size: 28px;
+		color: rgb(var(--accent));
+	}
+	.content-section p {
+		font-size: 1.05rem;
+		line-height: 1.9;
+		color: rgb(var(--gray-dark));
+		margin-bottom: 1.25rem;
+	}
+	.values-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+		margin-top: 2rem;
+	}
+	.value-card {
+		background: white;
+		border-radius: 16px;
+		box-shadow: var(--box-shadow);
+		padding: 2rem;
+		text-align: center;
+	}
+	.value-card .material-icons {
+		font-size: 48px;
+		color: rgb(var(--accent));
+		display: block;
+		margin-bottom: 1rem;
+	}
+	.value-card h3 {
+		font-size: 1.1rem;
+		color: rgb(var(--black));
+		margin-bottom: 0.75rem;
+	}
+	.value-card p {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: rgb(var(--gray));
+		margin-bottom: 0;
+	}
+	.recommend-list {
+		list-style: none;
+		padding: 0;
+		margin: 1.5rem 0;
+	}
+	.recommend-list li {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		background: white;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+		padding: 1.25rem 1.5rem;
+		margin-bottom: 1rem;
+		font-size: 1.05rem;
+		color: rgb(var(--gray-dark));
+	}
+	.recommend-list .material-icons {
+		font-size: 24px;
+		color: rgb(var(--accent));
+		flex-shrink: 0;
+	}
+	@media (max-width: 720px) {
+		.about-header h1 {
+			font-size: 2rem;
+		}
+		.mascot-section {
+			flex-direction: column;
+			text-align: center;
+			padding: 2rem 1.5rem;
+		}
+		.mascot-image {
+			width: 150px;
+			height: 150px;
+		}
+		.mascot-intro h2 {
+			font-size: 1.5rem;
+		}
+		.values-grid {
+			grid-template-columns: 1fr;
+		}
+		.content-section h2 {
+			font-size: 1.5rem;
+		}
+	}
+</style>
