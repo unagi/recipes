@@ -6,10 +6,17 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
 	const recipes = await getCollection('recipes');
-	return recipes.map((recipe) => ({
-		params: { slug: recipe.slug },
+	// デバッグ: レシピオブジェクトの構造を確認
+	if (recipes.length > 0) {
+		console.log('[getStaticPaths] First recipe keys:', Object.keys(recipes[0]));
+		console.log('[getStaticPaths] First recipe id:', recipes[0].id);
+	}
+	const paths = recipes.map((recipe) => ({
+		params: { slug: recipe.id },
 		props: { recipe },
 	}));
+	console.log('[getStaticPaths] Generated paths:', paths.map(p => p.params.slug));
+	return paths;
 }
 
 type Props = {

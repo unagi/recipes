@@ -2,24 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const recipes = await getCollection('recipes');
-const sortedRecipes = [...recipes].sort(
-	(a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
-);
-
-const formatMinutes = (minutes?: number): string => (minutes ? `${minutes}分` : '—');
-const formatYield = (yieldData?: (typeof recipes)[number]['data']['yield']): string => {
-	if (!yieldData) {
-		return '—';
-	}
-	if (yieldData.amount !== undefined) {
-		return `${yieldData.amount}${yieldData.unit}`;
-	}
-	return `${yieldData.min ?? '?'}〜${yieldData.max ?? '?'}${yieldData.unit}`;
-};
 ---
 
 <!doctype html>
@@ -31,44 +14,22 @@ const formatYield = (yieldData?: (typeof recipes)[number]['data']['yield']): str
 		<Header />
 		<main>
 			<section class="hero">
-				<p class="kicker">レシピ共有サイト</p>
 				<h1>今日の献立、ここから探す</h1>
-				<p>登録済みレシピの一覧です。詳細ページから材料と手順を確認できます。</p>
+				<p class="subtitle">{SITE_DESCRIPTION}</p>
 			</section>
 
-			<section>
-				<h2>レシピ一覧</h2>
-				<ul class="recipe-list">
-					{sortedRecipes.map((recipe) => (
-						<li class="recipe-card">
-							<h3>
-								<a href={`/recipes/${recipe.slug}/`}>{recipe.data.title}</a>
-							</h3>
-							<p>{recipe.data.description}</p>
-							<dl>
-								<dt>タイプ</dt>
-								<dd>{recipe.data.recipeType}</dd>
-								<dt>人数</dt>
-								<dd>{recipe.data.servings ? `${recipe.data.servings}人分` : '—'}</dd>
-								<dt>できあがり量</dt>
-								<dd>{formatYield(recipe.data.yield)}</dd>
-								<dt>準備時間</dt>
-								<dd>{formatMinutes(recipe.data.prepTime)}</dd>
-								<dt>調理時間</dt>
-								<dd>{formatMinutes(recipe.data.cookTime)}</dd>
-								<dt>カテゴリ</dt>
-								<dd>{recipe.data.category ?? '—'}</dd>
-							</dl>
-							{recipe.data.tags.length > 0 && (
-								<ul class="tag-list">
-									{recipe.data.tags.map((tag) => (
-										<li>{tag}</li>
-									))}
-								</ul>
-							)}
-						</li>
-					))}
-				</ul>
+			<section class="features">
+				<div class="feature-card">
+					<h2>📖 レシピ</h2>
+					<p>さまざまな料理のレシピを公開しています。材料、手順、調理時間など詳しい情報が確認できます。</p>
+					<a href="/recipes/" class="button">レシピ一覧を見る</a>
+				</div>
+
+				<div class="feature-card">
+					<h2>📝 ブログ</h2>
+					<p>料理に関する記事や、レシピ開発の裏話などを投稿しています。</p>
+					<a href="/blog/" class="button">ブログを見る</a>
+				</div>
 			</section>
 		</main>
 		<Footer />
@@ -77,48 +38,68 @@ const formatYield = (yieldData?: (typeof recipes)[number]['data']['yield']): str
 
 <style>
 	.hero {
-		margin-bottom: 3rem;
+		text-align: center;
+		padding: 4rem 1rem 3rem;
+		margin-bottom: 2rem;
 	}
-	.kicker {
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		font-size: 0.9rem;
+	.hero h1 {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+		line-height: 1.2;
+	}
+	.subtitle {
+		font-size: 1.25rem;
 		color: rgba(var(--gray), 1);
+		max-width: 600px;
+		margin: 0 auto;
 	}
-	.recipe-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
+	.features {
 		display: grid;
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 0 1rem;
 	}
-	.recipe-card {
+	.feature-card {
 		background: white;
 		border-radius: 12px;
 		box-shadow: var(--box-shadow);
-		padding: 1.5rem;
+		padding: 2rem;
+		text-align: center;
 	}
-	.recipe-card h3 {
-		margin-bottom: 0.5rem;
+	.feature-card h2 {
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
 	}
-	.recipe-card dl {
-		display: grid;
-		grid-template-columns: max-content 1fr;
-		gap: 0.25rem 1rem;
-		margin: 1rem 0 0;
+	.feature-card p {
+		margin-bottom: 1.5rem;
+		color: rgba(var(--gray), 1);
+		line-height: 1.6;
 	}
-	.tag-list {
-		list-style: none;
-		padding: 0;
-		margin: 1rem 0 0;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
+	.button {
+		display: inline-block;
+		background: rgb(var(--accent));
+		color: white;
+		padding: 0.75rem 1.5rem;
+		border-radius: 8px;
+		text-decoration: none;
+		font-weight: 600;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
-	.tag-list li {
-		background: rgba(var(--gray-light), 0.8);
-		padding: 0.2rem 0.6rem;
-		border-radius: 999px;
-		font-size: 0.85rem;
+	.button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(var(--accent), 0.3);
+	}
+	@media (max-width: 720px) {
+		.hero h1 {
+			font-size: 2rem;
+		}
+		.subtitle {
+			font-size: 1rem;
+		}
+		.features {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
