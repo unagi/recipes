@@ -2,48 +2,123 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const recipes = await getCollection('recipes');
+const sortedRecipes = [...recipes].sort(
+	(a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+);
+
+const formatMinutes = (minutes?: number): string => (minutes ? `${minutes}分` : '—');
+const formatYield = (yieldData?: (typeof recipes)[number]['data']['yield']): string => {
+	if (!yieldData) {
+		return '—';
+	}
+	if (yieldData.amount !== undefined) {
+		return `${yieldData.amount}${yieldData.unit}`;
+	}
+	return `${yieldData.min ?? '?'}〜${yieldData.max ?? '?'}${yieldData.unit}`;
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<p class="kicker">レシピ共有サイト</p>
+				<h1>今日の献立、ここから探す</h1>
+				<p>登録済みレシピの一覧です。詳細ページから材料と手順を確認できます。</p>
+			</section>
+
+			<section>
+				<h2>レシピ一覧</h2>
+				<ul class="recipe-list">
+					{sortedRecipes.map((recipe) => (
+						<li class="recipe-card">
+							<h3>
+								<a href={`/recipes/${recipe.slug}/`}>{recipe.data.title}</a>
+							</h3>
+							<p>{recipe.data.description}</p>
+							<dl>
+								<dt>タイプ</dt>
+								<dd>{recipe.data.recipeType}</dd>
+								<dt>人数</dt>
+								<dd>{recipe.data.servings ? `${recipe.data.servings}人分` : '—'}</dd>
+								<dt>できあがり量</dt>
+								<dd>{formatYield(recipe.data.yield)}</dd>
+								<dt>準備時間</dt>
+								<dd>{formatMinutes(recipe.data.prepTime)}</dd>
+								<dt>調理時間</dt>
+								<dd>{formatMinutes(recipe.data.cookTime)}</dd>
+								<dt>カテゴリ</dt>
+								<dd>{recipe.data.category ?? '—'}</dd>
+							</dl>
+							{recipe.data.tags.length > 0 && (
+								<ul class="tag-list">
+									{recipe.data.tags.map((tag) => (
+										<li>{tag}</li>
+									))}
+								</ul>
+							)}
+						</li>
+					))}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.hero {
+		margin-bottom: 3rem;
+	}
+	.kicker {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.9rem;
+		color: rgba(var(--gray), 1);
+	}
+	.recipe-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 1.5rem;
+	}
+	.recipe-card {
+		background: white;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+		padding: 1.5rem;
+	}
+	.recipe-card h3 {
+		margin-bottom: 0.5rem;
+	}
+	.recipe-card dl {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		gap: 0.25rem 1rem;
+		margin: 1rem 0 0;
+	}
+	.tag-list {
+		list-style: none;
+		padding: 0;
+		margin: 1rem 0 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	.tag-list li {
+		background: rgba(var(--gray-light), 0.8);
+		padding: 0.2rem 0.6rem;
+		border-radius: 999px;
+		font-size: 0.85rem;
+	}
+</style>
