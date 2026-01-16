@@ -1,0 +1,129 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE } from '../../consts';
+
+const recipes = await getCollection('recipes');
+// デバッグ: レシピオブジェクトの構造を確認
+if (recipes.length > 0) {
+	console.log('First recipe keys:', Object.keys(recipes[0]));
+	console.log('First recipe id:', recipes[0].id);
+	console.log('First recipe:', JSON.stringify(recipes[0], null, 2).substring(0, 500));
+}
+const sortedRecipes = [...recipes].sort(
+	(a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+);
+
+const formatMinutes = (minutes?: number): string => (minutes ? `${minutes}分` : '—');
+const formatYield = (yieldData?: (typeof recipes)[number]['data']['yield']): string => {
+	if (!yieldData) {
+		return '—';
+	}
+	if (yieldData.amount !== undefined) {
+		return `${yieldData.amount}${yieldData.unit}`;
+	}
+	return `${yieldData.min ?? '?'}〜${yieldData.max ?? '?'}${yieldData.unit}`;
+};
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={`レシピ一覧 | ${SITE_TITLE}`} description="登録済みレシピの一覧です。詳細ページから材料と手順を確認できます。" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<p class="kicker">レシピ共有サイト</p>
+				<h1>レシピ一覧</h1>
+				<p>登録済みレシピの一覧です。詳細ページから材料と手順を確認できます。</p>
+			</section>
+
+			<section>
+				<ul class="recipe-list">
+					{sortedRecipes.map((recipe) => (
+						<li class="recipe-card">
+							<h3>
+								<a href={`/recipes/${recipe.id}/`}>{recipe.data.title}</a>
+							</h3>
+							<p>{recipe.data.description}</p>
+							<dl>
+								<dt>タイプ</dt>
+								<dd>{recipe.data.recipeType}</dd>
+								<dt>人数</dt>
+								<dd>{recipe.data.servings ? `${recipe.data.servings}人分` : '—'}</dd>
+								<dt>できあがり量</dt>
+								<dd>{formatYield(recipe.data.yield)}</dd>
+								<dt>準備時間</dt>
+								<dd>{formatMinutes(recipe.data.prepTime)}</dd>
+								<dt>調理時間</dt>
+								<dd>{formatMinutes(recipe.data.cookTime)}</dd>
+								<dt>カテゴリ</dt>
+								<dd>{recipe.data.category ?? '—'}</dd>
+							</dl>
+							{recipe.data.tags.length > 0 && (
+								<ul class="tag-list">
+									{recipe.data.tags.map((tag) => (
+										<li>{tag}</li>
+									))}
+								</ul>
+							)}
+						</li>
+					))}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hero {
+		margin-bottom: 3rem;
+	}
+	.kicker {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.9rem;
+		color: rgba(var(--gray), 1);
+	}
+	.recipe-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 1.5rem;
+	}
+	.recipe-card {
+		background: white;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+		padding: 1.5rem;
+	}
+	.recipe-card h3 {
+		margin-bottom: 0.5rem;
+	}
+	.recipe-card dl {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		gap: 0.25rem 1rem;
+		margin: 1rem 0 0;
+	}
+	.tag-list {
+		list-style: none;
+		padding: 0;
+		margin: 1rem 0 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	.tag-list li {
+		background: rgba(var(--gray-light), 0.8);
+		padding: 0.2rem 0.6rem;
+		border-radius: 999px;
+		font-size: 0.85rem;
+	}
+</style>
