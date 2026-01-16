@@ -53,69 +53,11 @@ Astroベースのレシピ共有サイト。
 2. **Green**: テストを通す最小限の実装
 3. **Refactor**: リファクタリング
 
-### テスト環境セットアップ
+### テスト詳細
 
-**初回セットアップ時に実施:**
+テスト環境のセットアップ、テストケース作成ルール、トラブルシューティング等の詳細は以下を参照：
 
-```bash
-# Vitestとテスト関連パッケージのインストール
-npm install -D vitest @vitest/ui
-npm install -D @testing-library/react @testing-library/jest-dom
-npm install -D happy-dom  # DOMテスト用
-```
-
-**package.json に追加:**
-```json
-{
-  "scripts": {
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run"
-  }
-}
-```
-
-**vitest.config.ts を作成:**
-```typescript
-import { defineConfig } from 'vitest/config';
-
-export default defineConfig({
-  test: {
-    environment: 'happy-dom',
-    globals: true,
-  },
-});
-```
-
-### テスト作成ルール
-
-1. **配置**: `src/**/*.test.ts` または `src/**/*.spec.ts`
-2. **命名**: テスト対象と同じディレクトリに配置
-3. **構成**:
-   ```typescript
-   describe('機能名', () => {
-     test('正常系: 期待される動作', () => {
-       // Arrange: 準備
-       // Act: 実行
-       // Assert: 検証
-     });
-
-     test('異常系: エラーケース', () => {
-       // ...
-     });
-   });
-   ```
-
-### テスト修正の原則
-
-**確認不要（自動的に修正可）:**
-- import/requireパスの変更
-- リネームリファクタに伴う関数名・変数名変更
-
-**確認必須（必ず事前確認）:**
-- アサーションの期待値変更
-- テストケースの追加・削除
-- モック/スタブの振る舞い変更
+**[TESTING.md](./TESTING.md)** - テスト開発ガイド（セットアップ、TDD原則、テストケース例、トラブルシューティング）
 
 ---
 
