@@ -5,6 +5,8 @@ description: "昆布水、下ゆで、焼き付け、低温1.5時間煮込みで
 recipeType: "dish"
 servings: 3
 cookTime: 165
+prepTime: 20
+tags: ["角煮", "豚バラ", "煮込み", "和食"]
 
 ingredients:
   - name: "豚バラブロック"

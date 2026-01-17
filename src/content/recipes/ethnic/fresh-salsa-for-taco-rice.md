@@ -3,6 +3,8 @@ category: ethnic
 title: "タコライス用☆フレッシュサルサ♪"
 description: "トマトと香味野菜を和えるだけで作れる、さっぱり味のフレッシュサルサです。"
 recipeType: "condiment"
+cookTime: 5
+prepTime: 15
 
 ingredients:
   - name: "トマト"

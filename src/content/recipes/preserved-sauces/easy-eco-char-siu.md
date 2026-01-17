@@ -3,6 +3,9 @@ category: preserved-sauces
 title: "【かんたん・エコ】チャーシュー"
 description: "【かんたん・エコ】チャーシューのレシピです。"
 recipeType: "ingredient"
+cookTime: 35
+prepTime: 720
+tags: ["チャーシュー", "作り置き", "低温熟成", "豚もも"]
 
 ingredients:
   - name: "醤油"

@@ -5,6 +5,7 @@ description: "コンソメ不使用だけれど旨味十分。一食100円位の
 recipeType: "dish"
 servings: 2
 cookTime: 15
+prepTime: 10
 
 ingredients:
   - name: "スパゲティ（1.6mm）"

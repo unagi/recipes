@@ -4,6 +4,8 @@ title: "具だくさん！チーズカレーリゾット"
 description: "野菜をたっぷり入れ、チーズとカレーの風味で食べやすくしたリゾットです。"
 recipeType: "dish"
 servings: 2
+cookTime: 30
+prepTime: 20
 
 ingredients:
   - name: "米"

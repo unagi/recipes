@@ -4,6 +4,7 @@ title: "ホルモンの漬けダレ（味噌味）"
 description: "味噌ベースの漬けダレでホルモンを漬け込み、香ばしく焼き上げるレシピです。"
 recipeType: "ingredient"
 prepTime: 720
+cookTime: 10
 
 ingredients:
   - name: "味噌"

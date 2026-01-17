@@ -4,6 +4,9 @@ title: "たらとタラコのクリーミー親子パスタ"
 description: "たらとタラコのクリーミー親子パスタのレシピです。"
 recipeType: "dish"
 servings: 2
+cookTime: 20
+prepTime: 10
+tags: ["パスタ", "クリーム", "たら", "たらこ"]
 
 ingredients:
   - name: "パスタ (2.5mm)"

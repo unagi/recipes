@@ -3,6 +3,9 @@ category: preserved-sauces
 title: "我が家のチャーシュー継ぎ足しタレ"
 description: "チャーシューと味玉を漬け込み、煮沸して継ぎ足し保存できるタレのレシピです。"
 recipeType: "sauce"
+cookTime: 110
+prepTime: 720
+tags: ["チャーシュー", "継ぎ足し", "タレ", "味玉"]
 
 ingredients:
   - name: "豚肩ロースorもも肉ブロック"

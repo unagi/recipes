@@ -4,6 +4,9 @@ title: "辛くない！本格麻婆豆腐(辛さ調節可能)"
 description: "辛くない！本格麻婆豆腐(辛さ調節可能)のレシピです。"
 recipeType: "dish"
 servings: 4
+cookTime: 15
+prepTime: 10
+tags: ["麻婆豆腐", "中華", "辛さ控えめ", "豆腐"]
 
 ingredients:
   - name: "木綿豆腐"

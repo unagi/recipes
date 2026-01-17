@@ -8,6 +8,7 @@ yield:
   max: 250
   unit: "g"
 prepTime: 45
+cookTime: 40
 
 ingredients:
   - name: "玉ねぎ"

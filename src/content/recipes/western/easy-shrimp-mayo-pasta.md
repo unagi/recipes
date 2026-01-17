@@ -4,6 +4,9 @@ title: "簡単エビマヨパスタ"
 description: "簡単エビマヨパスタのレシピです。"
 recipeType: "dish"
 servings: 2
+cookTime: 20
+prepTime: 15
+tags: ["パスタ", "エビマヨ", "簡単", "マヨネーズ"]
 
 ingredients:
   - name: "スパゲッティ"
