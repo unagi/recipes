@@ -5,9 +5,9 @@ description: "万能！よだれ鳥のタレのレシピです。"
 recipeType: "sauce"
 
 ingredients:
-  - name: "にん[52]にく(すり[53]おろし)"
+  - name: "にんにく(すりおろし)"
     amount: "1かけ"
-  - name: "しょうが(すり[54]おろし)"
+  - name: "しょうが(すりおろし)"
     amount: "1かけ"
   - name: "豆板醤"
     amount: "大さじ1/2"
@@ -17,9 +17,9 @@ ingredients:
     amount: "大さじ２"
   - name: "酢"
     amount: "大さじ２"
-  - name: "[55]ごま油"
+  - name: "ごま油"
     amount: "大さじ２"
-  - name: "[56]長ネギ(みじん切り)"
+  - name: "長ネギ(みじん切り)"
     amount: "15センチ"
 
 steps:
