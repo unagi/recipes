@@ -68,7 +68,7 @@ for (const [groupName, items] of ingredientsMap) {
 
 // 手順内の [グループ名] をHTMLリンクに変換する関数
 function formatStepWithLinks(step: string): string {
-	return step.replace(/\[([^\]]+)\]/g, (match, groupName) => {
+	return step.replace(/\[([^\]]+)\]/g, (_match, groupName) => {
 		// グループ名をURLフラグメント用にエンコード
 		const anchorId = `ingredient-group-${encodeURIComponent(groupName)}`;
 		return `<a href="#${anchorId}" class="ingredient-ref">${groupName}</a>`;
@@ -77,7 +77,7 @@ function formatStepWithLinks(step: string): string {
 
 // 材料名内のMarkdownリンク [テキスト](URL) をHTMLに変換する関数
 function formatIngredientName(name: string): string {
-	return name.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+	return name.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, text, url) => {
 		return `<a href="${url}" class="ingredient-link">${text}</a>`;
 	});
 }

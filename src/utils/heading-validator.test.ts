@@ -14,7 +14,7 @@ function extractHeadingLevelsFromHTML(html: string): number[] {
 	let match;
 
 	while ((match = headingRegex.exec(html)) !== null) {
-		const level = parseInt(match[1], 10);
+		const level = parseInt(match[1]!, 10);
 		levels.push(level);
 	}
 
@@ -31,8 +31,8 @@ function validateHeadingHierarchy(levels: number[]): string[] {
 	const errors: string[] = [];
 
 	for (let i = 1; i < levels.length; i++) {
-		const prev = levels[i - 1];
-		const curr = levels[i];
+		const prev = levels[i - 1]!;
+		const curr = levels[i]!;
 
 		// 前の見出しより2レベル以上深くなっている場合はエラー
 		if (curr - prev > 1) {
