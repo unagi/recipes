@@ -1,0 +1,77 @@
+version: 1
+rules:
+  - expected: しょうが
+    pattern: 生姜
+    specs:
+      - from: 生姜
+        to: しょうが
+  - expected: 醤油
+    pattern: しょうゆ
+    specs:
+      - from: しょうゆ
+        to: 醤油
+  - expected: だし
+    pattern: 出汁
+    specs:
+      - from: 出汁
+        to: だし
+  - expected: にんじん
+    pattern: 人参
+    specs:
+      - from: 人参
+        to: にんじん
+  - expected: にんじん
+    pattern: ニンジン
+    specs:
+      - from: ニンジン
+        to: にんじん
+  - expected: たまねぎ
+    pattern: 玉ねぎ
+    specs:
+      - from: 玉ねぎ
+        to: たまねぎ
+  - expected: たまねぎ
+    pattern: タマネギ
+    specs:
+      - from: タマネギ
+        to: たまねぎ
+  - expected: ねぎ
+    pattern: ネギ
+    specs:
+      - from: ネギ
+        to: ねぎ
+  - expected: 長ねぎ
+    pattern: 長ネギ
+    specs:
+      - from: 長ネギ
+        to: 長ねぎ
+  - expected: こねぎ
+    pattern: 小ネギ
+    specs:
+      - from: 小ネギ
+        to: こねぎ
+  - expected: こねぎ
+    pattern: 万能ねぎ
+    specs:
+      - from: 万能ねぎ
+        to: こねぎ
+  - expected: にら
+    pattern: ニラ
+    specs:
+      - from: ニラ
+        to: にら
+  - expected: こしょう
+    pattern: 胡椒
+    specs:
+      - from: 胡椒
+        to: こしょう
+  - expected: ひき肉
+    pattern: 挽き肉
+    specs:
+      - from: 挽き肉
+        to: ひき肉
+  - expected: なす
+    pattern: 茄子
+    specs:
+      - from: 茄子
+        to: なす

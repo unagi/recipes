@@ -19,7 +19,7 @@ ingredients:
     amount: "適量"
   - name: "キャベツ"
     amount: "200g"
-  - name: "タマネギ"
+  - name: "たまねぎ"
     amount: "0.5個"
   - name: "にんじん"
     amount: "50g"
