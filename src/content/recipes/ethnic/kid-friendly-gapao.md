@@ -6,11 +6,11 @@ recipeType: "dish"
 servings: 2
 
 ingredients:
-  - name: "[52]豚 or [53]鶏の挽肉"
+  - name: "豚 or 鶏の挽肉"
     amount: "200g"
-  - name: "[54]たまねぎ"
+  - name: "たまねぎ"
     amount: "1/2個"
-  - name: "[55]ピーマン"
+  - name: "ピーマン"
     amount: "1個"
   - name: "しょうが"
     amount: "1片"

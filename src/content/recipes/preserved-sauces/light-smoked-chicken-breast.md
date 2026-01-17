@@ -5,7 +5,7 @@ description: "鶏胸肉で作るさっぱりスモークチキンのレシピで
 recipeType: "ingredient"
 
 ingredients:
-  - name: "[52]鶏胸肉"
+  - name: "鶏胸肉"
     amount: "2枚"
   - name: "マジックソルト"
     amount: "大さじ1"
@@ -19,16 +19,16 @@ ingredients:
   - name: "白ワイン"
     amount: "小さじ1"
     group: "漬け込み調味料"
-  - name: "にん[53]にく"
+  - name: "にんにく"
     amount: "1片"
     group: "漬け込み調味料"
   - name: "ローリエの葉"
     amount: "1枚"
     group: "漬け込み調味料"
-  - name: "[54]りんごチップ"
+  - name: "りんごチップ"
     amount: "小さじ2"
     group: "スモークチップ"
-  - name: "[55]さくらチップ"
+  - name: "さくらチップ"
     amount: "小さじ1"
     group: "スモークチップ"
 

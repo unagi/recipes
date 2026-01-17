@@ -15,11 +15,11 @@ ingredients:
     amount: "大さじ１"
   - name: "蜂蜜"
     amount: "大さじ１"
-  - name: "にん[52]にく（すり[53]おろし）"
+  - name: "にんにく（すりおろし）"
     amount: "1かけ"
-  - name: "しょうが（すり[54]おろし）"
+  - name: "しょうが（すりおろし）"
     amount: "１かけ"
-  - name: "[55]豚モモブロック"
+  - name: "豚モモブロック"
     amount: "700gくらい"
 
 steps:

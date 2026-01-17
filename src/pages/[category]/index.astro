@@ -4,6 +4,7 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { getCollection } from 'astro:content';
 import { SITE_TITLE, CATEGORIES, type CategoryKey } from '../../consts';
+import { formatPrepTime, formatCookingTime } from '../../utils/format';
 
 export async function getStaticPaths() {
 	const recipes = await getCollection('recipes');
@@ -46,9 +47,10 @@ const sortedRecipes = [...recipes].sort(
 			<section>
 				<ul class="recipe-list">
 					{sortedRecipes.map((recipe) => {
-						const totalTime = (recipe.data.prepTime ?? 0) + (recipe.data.cookTime ?? 0);
 						const displayTags = recipe.data.tags.slice(0, 3);
 						const [category, slug] = recipe.id.split('/');
+						const hasPrepTime = recipe.data.prepTime && recipe.data.prepTime > 0;
+						const hasCookTime = recipe.data.cookTime && recipe.data.cookTime > 0;
 
 						return (
 							<li class="recipe-card">
@@ -56,10 +58,16 @@ const sortedRecipes = [...recipes].sort(
 									<h3>{recipe.data.title}</h3>
 									<p class="description">{recipe.data.description}</p>
 									<div class="recipe-meta">
-										{totalTime > 0 && (
+										{hasPrepTime && (
 											<div class="meta-item">
 												<span class="material-icons">schedule</span>
-												<span>{totalTime}分</span>
+												<span>準備: {formatPrepTime(recipe.data.prepTime!)}</span>
+											</div>
+										)}
+										{hasCookTime && (
+											<div class="meta-item">
+												<span class="material-icons">timer</span>
+												<span>調理: {formatCookingTime(recipe.data.cookTime!)}</span>
 											</div>
 										)}
 										{recipe.data.servings && (

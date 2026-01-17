@@ -3,6 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { formatCookingTime, formatPrepTime, formatCategory } from '../../utils/format';
 
 export async function getStaticPaths() {
 	const recipes = await getCollection('recipes');
@@ -22,7 +23,6 @@ type Props = {
 const { recipe } = Astro.props;
 const { Content } = await render(recipe);
 
-const formatMinutes = (minutes?: number): string => (minutes ? `${minutes}分` : '—');
 const formatYield = (
 	yieldData?: CollectionEntry<'recipes'>['data']['yield']
 ): string => {
@@ -34,6 +34,53 @@ const formatYield = (
 	}
 	return `${yieldData.min ?? '?'}〜${yieldData.max ?? '?'}${yieldData.unit}`;
 };
+
+// 材料をグループごとに整理
+type GroupedIngredients = {
+	groupName: string | null;
+	items: typeof recipe.data.ingredients;
+};
+
+const groupedIngredients: GroupedIngredients[] = [];
+const ingredientsMap = new Map<string | null, typeof recipe.data.ingredients>();
+
+recipe.data.ingredients.forEach((ingredient) => {
+	const group = ingredient.group ?? null;
+	if (!ingredientsMap.has(group)) {
+		ingredientsMap.set(group, []);
+	}
+	ingredientsMap.get(group)!.push(ingredient);
+});
+
+// グループなしの材料を最初に、グループありの材料をその後に配置
+if (ingredientsMap.has(null)) {
+	groupedIngredients.push({
+		groupName: null,
+		items: ingredientsMap.get(null)!,
+	});
+}
+
+for (const [groupName, items] of ingredientsMap) {
+	if (groupName !== null) {
+		groupedIngredients.push({ groupName, items });
+	}
+}
+
+// 手順内の [グループ名] をHTMLリンクに変換する関数
+function formatStepWithLinks(step: string): string {
+	return step.replace(/\[([^\]]+)\]/g, (match, groupName) => {
+		// グループ名をURLフラグメント用にエンコード
+		const anchorId = `ingredient-group-${encodeURIComponent(groupName)}`;
+		return `<a href="#${anchorId}" class="ingredient-ref">${groupName}</a>`;
+	});
+}
+
+// 材料名内のMarkdownリンク [テキスト](URL) をHTMLに変換する関数
+function formatIngredientName(name: string): string {
+	return name.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+		return `<a href="${url}" class="ingredient-link">${text}</a>`;
+	});
+}
 ---
 
 <!doctype html>
@@ -76,7 +123,7 @@ const formatYield = (
 								<span class="material-icons">schedule</span>
 								<div>
 									<dt>準備時間</dt>
-									<dd>{formatMinutes(recipe.data.prepTime)}</dd>
+									<dd>{formatPrepTime(recipe.data.prepTime)}</dd>
 								</div>
 							</div>
 						)}
@@ -85,7 +132,7 @@ const formatYield = (
 								<span class="material-icons">timer</span>
 								<div>
 									<dt>調理時間</dt>
-									<dd>{formatMinutes(recipe.data.cookTime)}</dd>
+									<dd>{formatCookingTime(recipe.data.cookTime)}</dd>
 								</div>
 							</div>
 						)}
@@ -94,7 +141,7 @@ const formatYield = (
 								<span class="material-icons">category</span>
 								<div>
 									<dt>カテゴリ</dt>
-									<dd>{recipe.data.category}</dd>
+									<dd>{formatCategory(recipe.data.category)}</dd>
 								</div>
 							</div>
 						)}
@@ -103,7 +150,11 @@ const formatYield = (
 								<span class="material-icons">local_offer</span>
 								<div>
 									<dt>タグ</dt>
-									<dd class="tags">{recipe.data.tags.join(', ')}</dd>
+									<dd class="tags">
+										{recipe.data.tags.map((tag) => (
+											<span class="tag">{tag}</span>
+										))}
+									</dd>
 								</div>
 							</div>
 						)}
@@ -115,26 +166,28 @@ const formatYield = (
 						<span class="material-icons">shopping_cart</span>
 						材料
 					</h2>
-					<ul>
-						{recipe.data.ingredients.map((ingredient) => (
-							<li>
-								{ingredient.name}：{ingredient.amount}
-								{ingredient.group ? `（${ingredient.group}）` : ''}
-							</li>
-						))}
-					</ul>
-				</section>
-
-				<section class="content-section">
-					<h2>
-						<span class="material-icons">format_list_numbered</span>
-						手順
-					</h2>
-					<ol>
-						{recipe.data.steps.map((step) => (
-							<li>{step}</li>
-						))}
-					</ol>
+					<div class="ingredients-container">
+						{groupedIngredients.map((group) => {
+							const groupId = group.groupName
+								? `ingredient-group-${encodeURIComponent(group.groupName)}`
+								: undefined;
+							return (
+								<div class="ingredient-group-section" id={groupId}>
+									{group.groupName && (
+										<h3 class="ingredient-group-title">{group.groupName}</h3>
+									)}
+									<ul class="ingredients-list">
+										{group.items.map((ingredient) => (
+											<li class="ingredient-item">
+												<span class="ingredient-name" set:html={formatIngredientName(ingredient.name)} />
+												<span class="ingredient-amount">{ingredient.amount}</span>
+											</li>
+										))}
+									</ul>
+								</div>
+							);
+						})}
+					</div>
 				</section>
 
 				{recipe.data.equipment.length > 0 && (
@@ -151,12 +204,26 @@ const formatYield = (
 					</section>
 				)}
 
+				<section class="content-section">
+					<h2>
+						<span class="material-icons">format_list_numbered</span>
+						手順
+					</h2>
+					<ol>
+						{recipe.data.steps.map((step) => (
+							<li set:html={formatStepWithLinks(step)} />
+						))}
+					</ol>
+				</section>
+
 				<section class="content-section prose">
 					<h2>
 						<span class="material-icons">info</span>
 						補足
 					</h2>
-					<Content />
+					<div class="prose-content">
+						<Content />
+					</div>
 				</section>
 			</article>
 		</main>
@@ -165,19 +232,26 @@ const formatYield = (
 </html>
 
 <style>
+	html {
+		scroll-behavior: smooth;
+	}
 	.recipe-header {
 		margin-bottom: 2.5rem;
 		text-align: center;
 	}
+	.recipe-header h1 {
+		font-size: 2rem;
+		margin: 0.5rem 0;
+	}
 	.recipe-type {
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 		color: rgb(var(--gray));
 		margin-bottom: 0.5rem;
 	}
 	.description {
-		font-size: 1.15rem;
+		font-size: 1rem;
 		margin-top: 1rem;
 		color: rgb(var(--gray));
 		line-height: 1.6;
@@ -221,8 +295,20 @@ const formatYield = (
 		font-weight: 500;
 	}
 	.meta-item .tags {
-		font-weight: 400;
-		color: rgb(var(--gray-dark));
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	.tag {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		background: rgb(var(--gray-light));
+		color: rgb(var(--accent));
+		border: 1px solid rgba(var(--accent), 0.2);
+		border-radius: 999px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		white-space: nowrap;
 	}
 	.content-section {
 		margin-bottom: 3rem;
@@ -235,17 +321,15 @@ const formatYield = (
 		padding-bottom: 0.75rem;
 		border-bottom: 2px solid rgb(var(--gray-light));
 		color: rgb(var(--black));
+		font-size: 1.5rem;
 	}
 	.content-section h2 .material-icons {
-		font-size: 28px;
+		font-size: 24px;
 		color: rgb(var(--accent));
 	}
 	.content-section ul,
 	.content-section ol {
-		background: white;
-		border-radius: 16px;
-		box-shadow: var(--box-shadow);
-		padding: 1.5rem 2rem 1.5rem 3rem;
+		padding: 0.5rem 0 0.5rem 2rem;
 		margin: 0;
 		line-height: 1.8;
 	}
@@ -255,6 +339,130 @@ const formatYield = (
 	}
 	.content-section li:last-child {
 		margin-bottom: 0;
+	}
+	/* 材料リストのスタイル */
+	.ingredients-container {
+		background: white;
+		border-radius: 16px;
+		box-shadow: var(--box-shadow);
+		padding: 1.5rem 2rem;
+	}
+	.ingredient-group-section {
+		margin-bottom: 1.5rem;
+		scroll-margin-top: 2rem;
+	}
+	.ingredient-group-section:last-child {
+		margin-bottom: 0;
+	}
+	.ingredient-group-section:target {
+		animation: highlight 2s ease;
+	}
+	@keyframes highlight {
+		0% {
+			background-color: rgba(var(--accent), 0.1);
+		}
+		100% {
+			background-color: transparent;
+		}
+	}
+	.ingredient-group-title {
+		font-size: 1rem;
+		font-weight: 600;
+		color: rgb(var(--accent));
+		margin: 0 0 0.75rem 0;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid rgb(var(--gray-light));
+	}
+	.ingredients-list {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	.ingredient-item {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		padding: 0.5rem 0;
+	}
+	.ingredient-item:last-child {
+		padding-bottom: 0;
+	}
+	.ingredient-name {
+		flex: 1;
+		font-weight: 500;
+		color: rgb(var(--black));
+	}
+	.ingredient-name .ingredient-link {
+		color: rgb(var(--accent));
+		text-decoration: none;
+		font-weight: 600;
+	}
+	.ingredient-name .ingredient-link:hover {
+		text-decoration: underline;
+	}
+	.ingredient-amount {
+		font-weight: 400;
+		color: rgb(var(--gray-dark));
+		white-space: nowrap;
+	}
+	/* 手順内の材料グループリンク */
+	.ingredient-ref {
+		color: rgb(var(--accent));
+		text-decoration: none;
+		font-weight: 600;
+		border-bottom: 1px dotted rgb(var(--accent));
+	}
+	.ingredient-ref:hover {
+		border-bottom-style: solid;
+	}
+	/* 補足セクションのスタイル */
+	.content-section.prose > h2 {
+		font-size: 1.25rem;
+		color: rgb(var(--gray));
+		border-bottom: 1px solid rgb(var(--gray-light));
+	}
+	.content-section.prose > h2 .material-icons {
+		font-size: 20px;
+	}
+	.prose-content {
+		padding: 0;
+		font-size: 0.95rem;
+		line-height: 1.7;
+	}
+	.prose-content h3 {
+		font-size: 0.9rem;
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+		color: rgb(var(--black));
+		font-weight: 600;
+	}
+	.prose-content h3:first-child {
+		margin-top: 0;
+	}
+	.prose-content h4 {
+		font-size: 0.85rem;
+		margin-top: 1.25rem;
+		margin-bottom: 0.5rem;
+		color: rgb(var(--gray-dark));
+		font-weight: 600;
+	}
+	.prose-content h5 {
+		font-size: 0.8rem;
+		margin-top: 1rem;
+		margin-bottom: 0.5rem;
+		color: rgb(var(--gray-dark));
+		font-weight: 600;
+	}
+	.prose-content p {
+		margin: 0.75rem 0;
+	}
+	.prose-content ul,
+	.prose-content ol {
+		margin: 0.75rem 0;
+		padding-left: 1.5rem;
+	}
+	.prose-content li {
+		margin-bottom: 0.5rem;
 	}
 	@media (max-width: 720px) {
 		.meta-grid {
