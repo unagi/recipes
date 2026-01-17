@@ -68,7 +68,10 @@ for (const [groupName, items] of ingredientsMap) {
 
 // 手順内の [グループ名] をHTMLリンクに変換する関数
 function formatStepWithLinks(step: string): string {
-	return step.replace(/\[([^\]]+)\]/g, (_match, groupName) => {
+	const withMarker = step.replace(/==(.+?)==/g, (_match, text) => {
+		return `<mark class="highlight">${text}</mark>`;
+	});
+	return withMarker.replace(/\[([^\]]+)\]/g, (_match, groupName) => {
 		// グループ名をURLフラグメント用にエンコード
 		const anchorId = `ingredient-group-${encodeURIComponent(groupName)}`;
 		return `<a href="#${anchorId}" class="ingredient-ref">${groupName}</a>`;
@@ -455,6 +458,15 @@ function formatIngredientName(name: string): string {
 	}
 	.prose-content p {
 		margin: 0.75rem 0;
+	}
+	.prose-content :global(mark.highlight),
+	.content-section ol :global(mark.highlight) {
+		background-color: transparent !important;
+		background: linear-gradient(transparent 60%, rgba(185, 246, 202, 0.75) 0)
+			0 100% / 100% 0.55em no-repeat;
+		padding: 0 0.12em;
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
 	}
 	.prose-content ul,
 	.prose-content ol {
