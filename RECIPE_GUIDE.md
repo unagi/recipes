@@ -192,6 +192,8 @@ npm run test:run
   - `name`: 材料名
   - `amount`: 分量（"500g"、"大さじ2"、"適量"など）
   - `group`（任意）: グループ名（材料が多い場合に使用）
+  - **他のレシピへのリンク**: 材料名の後ろに `（[レシピ](/path/to/recipe/)）` の形式でリンクを追加
+    - ⚠️ URLの末尾に必ずスラッシュ `/` を含める
 - **例**:
   ```yaml
   ingredients:
@@ -202,6 +204,8 @@ npm run test:run
     - name: "クミン"
       amount: "大さじ2"
       group: "スパイス"
+    - name: "昆布水（[レシピ](/preserved-sauces/kombu-water/)）"
+      amount: "500ml"
   ```
 
 ### `steps`（配列）
