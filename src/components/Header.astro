@@ -11,6 +11,9 @@ import HeaderLink from './HeaderLink.astro';
 				{SITE_TITLE}
 			</a>
 		</h2>
+		<button class="hamburger" aria-label="メニュー" aria-expanded="false">
+			<span class="material-icons">menu</span>
+		</button>
 		<div class="internal-links">
 			<HeaderLink href="/">
 				<span class="material-icons">home</span>
@@ -42,6 +45,7 @@ import HeaderLink from './HeaderLink.astro';
 			</HeaderLink>
 		</div>
 	</nav>
+	<div class="overlay"></div>
 </header>
 <style>
 	header {
@@ -108,15 +112,140 @@ import HeaderLink from './HeaderLink.astro';
 		color: inherit;
 	}
 
+	.hamburger {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5em;
+		color: rgb(var(--gray-dark));
+		transition: color 0.2s ease;
+	}
+
+	.hamburger:hover {
+		color: rgb(var(--accent));
+	}
+
+	.hamburger .material-icons {
+		font-size: 28px;
+	}
+
+	.overlay {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
+		z-index: 999;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.overlay.active {
+		display: block;
+		opacity: 1;
+	}
+
 	@media (max-width: 720px) {
-		.internal-links :global(a) span:not(.material-icons) {
-			display: none;
+		.hamburger {
+			display: block;
 		}
+
 		.internal-links {
-			gap: 0.25rem;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 280px;
+			max-width: 80vw;
+			background: rgb(var(--background-warm));
+			box-shadow: -2px 0 12px rgba(var(--gray), 25%);
+			z-index: 1000;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0;
+			padding: 1em 0;
+			transform: translateX(100%);
+			transition: transform 0.3s ease;
+			overflow-y: auto;
 		}
+
+		.internal-links.open {
+			transform: translateX(0);
+		}
+
+		.internal-links :global(a) {
+			padding: 1em 1.5em;
+			border-bottom: none;
+			border-left: 3px solid transparent;
+			justify-content: flex-start;
+		}
+
+		.internal-links :global(a:hover),
+		.internal-links :global(a.active) {
+			background: rgba(var(--accent), 0.1);
+			border-left-color: rgb(var(--accent));
+			border-bottom-color: transparent;
+		}
+
+		.internal-links :global(a) span:not(.material-icons) {
+			display: inline;
+		}
+
 		header {
 			padding: 0 1em;
 		}
 	}
 </style>
+
+<script>
+	const initMenu = () => {
+		const hamburger = document.querySelector('.hamburger');
+		const menu = document.querySelector('.internal-links');
+		const overlay = document.querySelector('.overlay');
+
+		if (!hamburger || !menu || !overlay) return;
+
+		// 既存のリスナーを削除するため、関数を保存
+		const toggleMenu = () => {
+			const isOpen = menu.classList.contains('open');
+			menu.classList.toggle('open');
+			overlay.classList.toggle('active');
+			hamburger.setAttribute('aria-expanded', String(!isOpen));
+			const icon = hamburger.querySelector('.material-icons');
+			if (icon) {
+				icon.textContent = isOpen ? 'menu' : 'close';
+			}
+		};
+
+		const closeMenu = () => {
+			menu.classList.remove('open');
+			overlay.classList.remove('active');
+			hamburger.setAttribute('aria-expanded', 'false');
+			const icon = hamburger.querySelector('.material-icons');
+			if (icon) {
+				icon.textContent = 'menu';
+			}
+		};
+
+		// クリーンアップ: 古いリスナーを削除
+		hamburger.replaceWith(hamburger.cloneNode(true));
+		const newHamburger = document.querySelector('.hamburger');
+		if (!newHamburger) return;
+
+		newHamburger.addEventListener('click', toggleMenu);
+		overlay.addEventListener('click', closeMenu);
+
+		const links = menu.querySelectorAll('a');
+		links.forEach(link => {
+			link.addEventListener('click', closeMenu);
+		});
+	};
+
+	// 初回ロード
+	document.addEventListener('DOMContentLoaded', initMenu);
+	// Astroのページ遷移後
+	document.addEventListener('astro:page-load', initMenu);
+</script>
