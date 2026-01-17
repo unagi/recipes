@@ -3,6 +3,9 @@ category: preserved-sauces
 title: "万能！よだれ鳥のタレ"
 description: "万能！よだれ鳥のタレのレシピです。"
 recipeType: "sauce"
+cookTime: 5
+prepTime: 10
+tags: ["タレ", "中華", "よだれ鶏", "辛味"]
 
 ingredients:
   - name: "にんにく(すりおろし)"

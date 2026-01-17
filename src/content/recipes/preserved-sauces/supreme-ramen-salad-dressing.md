@@ -3,6 +3,8 @@ category: preserved-sauces
 title: "至高のラーメンサラダドレッシング"
 description: "香味油を使ってコクと香りを引き出す、ラーメンサラダ用の自家製ドレッシングです。"
 recipeType: "condiment"
+cookTime: 15
+prepTime: 20
 
 ingredients:
   - name: "サラダ油"

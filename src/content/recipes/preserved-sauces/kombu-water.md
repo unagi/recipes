@@ -6,6 +6,9 @@ recipeType: "stock"
 yield:
   amount: 500
   unit: "ml"
+cookTime: 5
+prepTime: 720
+tags: ["昆布水", "だし", "冷蔵抽出", "仕込み"]
 
 ingredients:
   - name: "水"

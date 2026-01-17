@@ -4,6 +4,9 @@ title: "本場沖縄の野菜そば"
 description: "本場沖縄の野菜そばのレシピです。"
 recipeType: "dish"
 servings: 4
+cookTime: 15
+prepTime: 15
+tags: ["沖縄そば", "野菜", "麺", "沖縄"]
 
 ingredients:
   - name: "キャベツ"

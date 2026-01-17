@@ -4,6 +4,9 @@ title: "牛しゃぶライスコロッケ"
 description: "牛しゃぶライスコロッケのレシピです。"
 recipeType: "dish"
 servings: 4
+cookTime: 25
+prepTime: 60
+tags: ["コロッケ", "牛しゃぶ", "揚げ物", "ご飯"]
 
 ingredients:
   - name: "牛肉薄切り（しゃぶしゃぶ用）"

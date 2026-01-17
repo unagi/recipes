@@ -5,6 +5,7 @@ description: "ビーツと豚肉を合わせ、野菜の甘みを引き出した
 recipeType: "dish"
 servings: 4
 cookTime: 120
+prepTime: 25
 
 ingredients:
   - name: "豚バラかたまり肉"

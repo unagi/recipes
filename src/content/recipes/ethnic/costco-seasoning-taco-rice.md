@@ -4,6 +4,8 @@ title: "コストコ無塩シーズニングで簡単タコライス"
 description: "無塩シーズニングを使ってタコミートを作り、作り置きにも便利なタコライスです。"
 recipeType: "dish"
 servings: 3
+cookTime: 25
+prepTime: 15
 
 ingredients:
   - name: "合挽肉"

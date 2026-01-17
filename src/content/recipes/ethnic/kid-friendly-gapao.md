@@ -4,6 +4,9 @@ title: "子供と食べる！簡単★ガパオ"
 description: "子供と食べる！簡単★ガパオのレシピです。"
 recipeType: "dish"
 servings: 2
+cookTime: 15
+prepTime: 15
+tags: ["ガパオ", "タイ料理", "子ども向け", "挽肉"]
 
 ingredients:
   - name: "豚 or 鶏の挽肉"

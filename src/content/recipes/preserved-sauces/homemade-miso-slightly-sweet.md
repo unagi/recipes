@@ -3,6 +3,9 @@ category: preserved-sauces
 title: "手前味噌　〜やや甘め〜"
 description: "手前味噌　〜やや甘め〜のレシピです。"
 recipeType: "preserve"
+cookTime: 240
+prepTime: 720
+tags: ["味噌", "発酵", "保存食", "仕込み"]
 
 ingredients:
   - name: "大豆"

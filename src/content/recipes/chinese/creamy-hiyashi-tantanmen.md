@@ -4,6 +4,9 @@ title: "【鉄人風】クリーミーな冷やし担々麺"
 description: "【鉄人風】クリーミーな冷やし担々麺のレシピです。"
 recipeType: "dish"
 servings: 1
+cookTime: 10
+prepTime: 20
+tags: ["冷やし担々麺", "麺", "豆乳", "肉味噌"]
 
 ingredients:
   - name: "中華麺"

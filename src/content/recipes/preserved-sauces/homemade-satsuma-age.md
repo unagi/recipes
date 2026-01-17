@@ -3,6 +3,9 @@ category: preserved-sauces
 title: "卵白不要！自家製さつま揚げ"
 description: "魚のすり身だけでぷりぷり食感に仕上げる、家庭向けの自家製さつま揚げです。"
 recipeType: "ingredient"
+cookTime: 10
+prepTime: 30
+tags: ["さつま揚げ", "練り物", "揚げ物", "自家製"]
 
 ingredients:
   - name: "いしもちなどの魚"
