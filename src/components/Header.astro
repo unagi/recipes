@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, CATEGORIES } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
@@ -16,9 +16,25 @@ import HeaderLink from './HeaderLink.astro';
 				<span class="material-icons">home</span>
 				<span>Home</span>
 			</HeaderLink>
-			<HeaderLink href="/recipes">
-				<span class="material-icons">restaurant_menu</span>
-				<span>Recipes</span>
+			<HeaderLink href="/japanese">
+				<span class="material-icons">rice_bowl</span>
+				<span>{CATEGORIES.japanese.label}</span>
+			</HeaderLink>
+			<HeaderLink href="/western">
+				<span class="material-icons">restaurant</span>
+				<span>{CATEGORIES.western.label}</span>
+			</HeaderLink>
+			<HeaderLink href="/chinese">
+				<span class="material-icons">ramen_dining</span>
+				<span>{CATEGORIES.chinese.label}</span>
+			</HeaderLink>
+			<HeaderLink href="/ethnic">
+				<span class="material-icons">kebab_dining</span>
+				<span>{CATEGORIES.ethnic.label}</span>
+			</HeaderLink>
+			<HeaderLink href="/preserved-sauces">
+				<span class="material-icons">inventory_2</span>
+				<span>{CATEGORIES['preserved-sauces'].label}</span>
 			</HeaderLink>
 			<HeaderLink href="/about">
 				<span class="material-icons">info</span>
