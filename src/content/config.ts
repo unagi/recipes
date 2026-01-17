@@ -64,7 +64,7 @@ const recipes = defineCollection({
 			equipment: z.array(z.string()).default([]),
 
 			// カテゴリ・タグ
-			category: z.string().optional(),
+			category: z.enum(['japanese', 'western', 'chinese', 'ethnic', 'preserved-sauces']),
 			tags: z.array(z.string()).default([]),
 
 			// 画像

@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, CATEGORIES } from '../consts';
 ---
 
 <!doctype html>
@@ -20,10 +20,34 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			<section class="features">
 				<div class="feature-card">
-					<span class="material-icons feature-icon">restaurant_menu</span>
-					<h2>レシピ</h2>
-					<p>さまざまな料理のレシピを公開しています。材料、手順、調理時間など詳しい情報が確認できます。</p>
-					<a href="/recipes/" class="button">レシピ一覧を見る</a>
+					<span class="material-icons feature-icon">rice_bowl</span>
+					<h2>{CATEGORIES.japanese.label}</h2>
+					<p>家庭で作れる定番和食から本格的な料理まで、和の味わいを楽しめるレシピ集。</p>
+					<a href="/japanese/" class="button">レシピを見る</a>
+				</div>
+				<div class="feature-card">
+					<span class="material-icons feature-icon">restaurant</span>
+					<h2>{CATEGORIES.western.label}</h2>
+					<p>洋風の定番料理やおもてなし料理など、西洋料理のレシピを紹介。</p>
+					<a href="/western/" class="button">レシピを見る</a>
+				</div>
+				<div class="feature-card">
+					<span class="material-icons feature-icon">ramen_dining</span>
+					<h2>{CATEGORIES.chinese.label}</h2>
+					<p>本格的な中華料理から家庭で作りやすいアレンジレシピまで。</p>
+					<a href="/chinese/" class="button">レシピを見る</a>
+				</div>
+				<div class="feature-card">
+					<span class="material-icons feature-icon">kebab_dining</span>
+					<h2>{CATEGORIES.ethnic.label}</h2>
+					<p>アジア、中東、南米などの各国料理で食卓に彩りを。</p>
+					<a href="/ethnic/" class="button">レシピを見る</a>
+				</div>
+				<div class="feature-card">
+					<span class="material-icons feature-icon">inventory_2</span>
+					<h2>{CATEGORIES['preserved-sauces'].label}</h2>
+					<p>作り置きできる保存食やタレで、毎日の料理をもっと便利に。</p>
+					<a href="/preserved-sauces/" class="button">レシピを見る</a>
 				</div>
 			</section>
 		</main>
@@ -50,10 +74,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		margin: 0 auto;
 	}
 	.features {
-		display: flex;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 2rem;
-		max-width: 500px;
+		max-width: 1200px;
 		margin: 0 auto;
 		padding: 0 1rem 2rem;
 	}
@@ -64,6 +88,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		padding: 2.5rem 2rem;
 		text-align: center;
 		transition: transform 0.2s ease, box-shadow 0.3s ease;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	.feature-card:hover {
 		transform: translateY(-4px);
@@ -81,19 +108,22 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		color: rgb(var(--black));
 	}
 	.feature-card p {
-		margin-bottom: 1.5rem;
+		margin-bottom: 2rem;
 		color: rgb(var(--gray));
 		line-height: 1.6;
+		flex-grow: 1;
 	}
 	.button {
 		display: inline-block;
 		background: rgb(var(--accent));
 		color: white;
-		padding: 0.75rem 1.5rem;
+		padding: 0.875rem 2rem;
 		border-radius: 12px;
 		text-decoration: none;
 		font-weight: 600;
+		font-size: 1rem;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		margin-top: auto;
 	}
 	.button:hover {
 		transform: translateY(-2px);

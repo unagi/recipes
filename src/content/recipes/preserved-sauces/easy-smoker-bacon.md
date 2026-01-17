@@ -1,4 +1,5 @@
 ---
+category: preserved-sauces
 title: "イージースモーカーでつくる即席ベーコン"
 description: "ソミュール液不要で、家庭用の燻製機で手軽にできるベーコンです。本格的なベーコン製造の複雑さを軽減し、家庭での実現可能性を高めました。"
 recipeType: "ingredient"
@@ -68,7 +69,6 @@ equipment:
   - "キッチンペーパー"
   - "保存容器"
 
-category: "燻製"
 tags: ["ベーコン", "燻製", "保存食", "手作り"]
 difficulty: "medium"
 publishedDate: 2024-01-16

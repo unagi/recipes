@@ -1,4 +1,5 @@
 ---
+category: preserved-sauces
 title: "ホルモンの漬けダレ（味噌味）"
 description: "味噌ベースの漬けダレでホルモンを漬け込み、香ばしく焼き上げるレシピです。"
 recipeType: "ingredient"
@@ -44,7 +45,6 @@ steps:
 equipment:
   - "ジップロック（密閉できる保存袋）"
 
-category: "ホルモン"
 tags: ["味噌", "漬けダレ", "焼肉"]
 publishedDate: 2026-01-17
 ---
