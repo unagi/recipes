@@ -6,6 +6,7 @@ recipeType: "ingredient"
 cookTime: 10
 prepTime: 30
 tags: ["さつま揚げ", "練り物", "揚げ物", "自家製"]
+image: "/images/recipes/Gemini_Generated_Image_vg36v0vg36v0vg36.png"
 
 ingredients:
   - name: "いしもちなどの魚"
