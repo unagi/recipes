@@ -203,14 +203,16 @@ function formatIngredientName(name: string): string {
 							<div class="meta-item tags-item">
 								<span class="material-icons">local_offer</span>
 								<div>
-									<dt>タグ</dt>
-									<dd class="tags">
-										{recipe.data.tags.map((tag) => (
-											<span class="tag">{tag}</span>
-										))}
-									</dd>
+										<dt>タグ</dt>
+										<dd class="tags">
+											{recipe.data.tags.map((tag) => (
+												<a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>
+													{tag}
+												</a>
+											))}
+										</dd>
+									</div>
 								</div>
-							</div>
 						)}
 					</div>
 				</section>
@@ -377,6 +379,11 @@ function formatIngredientName(name: string): string {
 		font-size: 0.875rem;
 		font-weight: 500;
 		white-space: nowrap;
+		text-decoration: none;
+	}
+	.tag:hover {
+		color: rgb(var(--accent));
+		border-color: rgba(var(--accent), 0.4);
 	}
 	.content-section {
 		margin-bottom: 3rem;

@@ -1,33 +1,39 @@
 ---
 import path from 'node:path';
 import type { ImageMetadata } from 'astro';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import Header from '../../components/Header.astro';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
 import { Image } from 'astro:assets';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { SITE_TITLE, CATEGORIES, type CategoryKey } from '../../consts';
-import { formatPrepTime, formatCookingTime } from '../../utils/format';
+import { SITE_TITLE } from '../../../consts';
+import { formatPrepTime, formatCookingTime } from '../../../utils/format';
 
 export async function getStaticPaths() {
 	const recipes = await getCollection('recipes');
-	const categoryKeys = Object.keys(CATEGORIES) as CategoryKey[];
+	const tagSet = new Set<string>();
 
-	return categoryKeys.map((category) => {
-		const filteredRecipes = recipes.filter(r => r.data.category === category);
+	recipes.forEach((recipe) => {
+		recipe.data.tags.forEach((tag) => {
+			tagSet.add(tag);
+		});
+	});
+
+	return Array.from(tagSet).map((tag) => {
+		const filteredRecipes = recipes.filter((recipe) => recipe.data.tags.includes(tag));
 		return {
-			params: { category },
-			props: { recipes: filteredRecipes, categoryLabel: CATEGORIES[category].label },
+			params: { tag },
+			props: { recipes: filteredRecipes, tagLabel: tag },
 		};
 	});
 }
 
 type Props = {
 	recipes: Awaited<ReturnType<typeof getCollection<'recipes'>>>;
-	categoryLabel: string;
+	tagLabel: string;
 };
 
-const { recipes, categoryLabel } = Astro.props;
+const { recipes, tagLabel } = Astro.props;
 const sortedRecipes = [...recipes].sort(
 	(a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
 );
@@ -70,15 +76,18 @@ const recipesWithImages = await Promise.all(
 <!doctype html>
 <html lang="ja">
 	<head>
-		<BaseHead title={`${categoryLabel}レシピ一覧 | ${SITE_TITLE}`} description={`${categoryLabel}のレシピ一覧です。詳細ページから材料と手順を確認できます。`} />
+		<BaseHead
+			title={`${tagLabel}レシピ一覧 | ${SITE_TITLE}`}
+			description={`${tagLabel}のレシピ一覧です。詳細ページから材料と手順を確認できます。`}
+		/>
 	</head>
 	<body>
 		<Header />
 		<main>
 			<section class="hero">
 				<p class="kicker">レシピ共有サイト</p>
-				<h1>{categoryLabel}レシピ一覧</h1>
-				<p>{categoryLabel}のレシピ一覧です。詳細ページから材料と手順を確認できます。</p>
+				<h1>{tagLabel}レシピ一覧</h1>
+				<p>{tagLabel}のレシピ一覧です。詳細ページから材料と手順を確認できます。</p>
 			</section>
 
 			<section>
