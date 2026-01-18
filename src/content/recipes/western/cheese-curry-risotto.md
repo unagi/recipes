@@ -6,7 +6,6 @@ recipeType: "dish"
 servings: 2
 cookTime: 30
 prepTime: 20
-image: "./cheese-curry-risotto.png"
 
 ingredients:
   - name: "米"

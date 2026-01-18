@@ -492,6 +492,10 @@ recipes.ymgch.org
 - [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/)
 - [Vitest公式ドキュメント](https://vitest.dev/)
 
+### 開発ガイド
+- [TESTING.md](./docs/agents/TESTING.md) - テスト開発ガイド
+- [DEPLOYMENT.md](./docs/agents/DEPLOYMENT.md) - デプロイメントガイド
+
 ### スキーマ・構造化データ
 - [Schema.org - Recipe](https://schema.org/Recipe)
 - [JSON-LD](https://json-ld.org/)

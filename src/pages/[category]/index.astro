@@ -5,7 +5,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { Image } from 'astro:assets';
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { SITE_TITLE, CATEGORIES, type CategoryKey } from '../../consts';
 import { formatPrepTime, formatCookingTime } from '../../utils/format';
 
@@ -35,35 +35,35 @@ const recipeImageModules = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/content/recipes/**/*.{png,jpg,jpeg,webp,avif}'
 );
 
-const resolveRecipeImage = async (
-	entry: CollectionEntry<'recipes'>,
-	imagePath: string | undefined
-) => {
-	if (!imagePath || !entry.filePath) {
+// 同名の画像ファイルを自動検出
+const resolveRecipeImage = async (entry: CollectionEntry<'recipes'>) => {
+	if (!entry.filePath) {
 		return undefined;
 	}
 
 	const entryDir = path.posix.dirname(`/${entry.filePath}`);
-	const resolvedPath = path.posix.resolve(entryDir, imagePath);
-	const loader = recipeImageModules[resolvedPath];
-	if (!loader) {
-		return undefined;
+	const baseName = path.posix.basename(entry.filePath, '.md');
+
+	// 対応する拡張子を優先順に試行
+	const extensions = ['png', 'jpg', 'jpeg', 'webp', 'avif'];
+
+	for (const ext of extensions) {
+		const imagePath = path.posix.join(entryDir, `${baseName}.${ext}`);
+		const loader = recipeImageModules[imagePath];
+		if (loader) {
+			const module = await loader();
+			return module.default;
+		}
 	}
 
-	const module = await loader();
-	return module.default;
+	return undefined;
 };
 
 const recipesWithImages = await Promise.all(
-	sortedRecipes.map(async (recipe) => {
-		const { remarkPluginFrontmatter } = await render(recipe);
-		const frontmatterImage = remarkPluginFrontmatter.image as string | undefined;
-
-		return {
-			recipe,
-			image: await resolveRecipeImage(recipe, frontmatterImage),
-		};
-	})
+	sortedRecipes.map(async (recipe) => ({
+		recipe,
+		image: await resolveRecipeImage(recipe),
+	}))
 );
 ---
 

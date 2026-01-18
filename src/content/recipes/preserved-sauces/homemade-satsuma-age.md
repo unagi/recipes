@@ -6,7 +6,6 @@ recipeType: "ingredient"
 cookTime: 10
 prepTime: 30
 tags: ["さつま揚げ", "練り物", "揚げ物", "自家製"]
-image: "./homemade-satsuma-age.png"
 
 ingredients:
   - name: "いしもちなどの魚"

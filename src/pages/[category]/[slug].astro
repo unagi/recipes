@@ -24,32 +24,36 @@ type Props = {
 };
 
 const { recipe } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await render(recipe);
+const { Content } = await render(recipe);
 const recipeImageModules = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/content/recipes/**/*.{png,jpg,jpeg,webp,avif}'
 );
 
-const resolveRecipeImage = async (
-	entry: CollectionEntry<'recipes'>,
-	imagePath: string | undefined
-) => {
-	if (!imagePath || !entry.filePath) {
+// 同名の画像ファイルを自動検出
+const resolveRecipeImage = async (entry: CollectionEntry<'recipes'>) => {
+	if (!entry.filePath) {
 		return undefined;
 	}
 
 	const entryDir = path.posix.dirname(`/${entry.filePath}`);
-	const resolvedPath = path.posix.resolve(entryDir, imagePath);
-	const loader = recipeImageModules[resolvedPath];
-	if (!loader) {
-		return undefined;
+	const baseName = path.posix.basename(entry.filePath, '.md');
+
+	// 対応する拡張子を優先順に試行
+	const extensions = ['png', 'jpg', 'jpeg', 'webp', 'avif'];
+
+	for (const ext of extensions) {
+		const imagePath = path.posix.join(entryDir, `${baseName}.${ext}`);
+		const loader = recipeImageModules[imagePath];
+		if (loader) {
+			const module = await loader();
+			return module.default;
+		}
 	}
 
-	const module = await loader();
-	return module.default;
+	return undefined;
 };
 
-const frontmatterImage = remarkPluginFrontmatter.image as string | undefined;
-const recipeImage = await resolveRecipeImage(recipe, frontmatterImage);
+const recipeImage = await resolveRecipeImage(recipe);
 const ogImage = recipeImage
 	? await getImage({ src: recipeImage, width: 1200, height: 600, format: 'webp' })
 	: undefined;
