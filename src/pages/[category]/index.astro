@@ -2,7 +2,7 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { SITE_TITLE, CATEGORIES, type CategoryKey } from '../../consts';
 import { formatPrepTime, formatCookingTime } from '../../utils/format';
 
@@ -28,6 +28,14 @@ const { recipes, categoryLabel } = Astro.props;
 const sortedRecipes = [...recipes].sort(
 	(a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
 );
+const recipesWithImages = await Promise.all(
+	sortedRecipes.map(async (recipe) => {
+		const { remarkPluginFrontmatter } = await render(recipe);
+		const image =
+			recipe.data.image ?? (remarkPluginFrontmatter.image as string | undefined);
+		return { recipe, image };
+	})
+);
 ---
 
 <!doctype html>
@@ -46,7 +54,7 @@ const sortedRecipes = [...recipes].sort(
 
 			<section>
 				<ul class="recipe-list">
-					{sortedRecipes.map((recipe) => {
+					{recipesWithImages.map(({ recipe, image }) => {
 						const displayTags = recipe.data.tags.slice(0, 3);
 						const [category, slug] = recipe.id.split('/');
 						const hasPrepTime = recipe.data.prepTime && recipe.data.prepTime > 0;
@@ -55,6 +63,18 @@ const sortedRecipes = [...recipes].sort(
 						return (
 							<li class="recipe-card">
 								<a href={`/${category}/${slug}/`} class="card-link">
+									{image ? (
+										<img
+											src={image}
+											alt={`${recipe.data.title}の写真`}
+											class="card-image"
+											loading="lazy"
+										/>
+									) : (
+										<div class="card-image placeholder" aria-hidden="true">
+											<span class="material-icons">photo</span>
+										</div>
+									)}
 									<h3>{recipe.data.title}</h3>
 									<p class="description">{recipe.data.description}</p>
 									<div class="recipe-meta">
@@ -129,6 +149,25 @@ const sortedRecipes = [...recipes].sort(
 		padding: 1.75rem;
 		text-decoration: none;
 		color: inherit;
+	}
+	.card-image {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+		border-radius: 12px;
+		margin-bottom: 1rem;
+		display: block;
+	}
+	.card-image.placeholder {
+		display: grid;
+		place-items: center;
+		background: linear-gradient(135deg, rgba(var(--gray-light), 0.9), rgba(var(--accent), 0.15));
+		border: 1px solid rgba(var(--gray), 0.2);
+		color: rgba(var(--gray-dark), 0.6);
+	}
+	.card-image.placeholder .material-icons {
+		font-size: 32px;
 	}
 	.recipe-card h3 {
 		margin-bottom: 0.75rem;
