@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: chinese
 title: "【かんたん・エコ】チャーシュー"
 recipeId: "easy-eco-char-siu"
 description: "【かんたん・エコ】チャーシューのレシピです。"

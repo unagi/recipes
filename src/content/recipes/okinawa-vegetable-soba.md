@@ -7,7 +7,7 @@ recipeType: "dish"
 servings: 4
 cookTime: 15
 prepTime: 15
-tags: ["沖縄そば", "野菜", "麺", "沖縄"]
+tags: ["沖縄そば", "野菜", "麺", "郷土料理"]
 
 ingredients:
   - name: "キャベツ"

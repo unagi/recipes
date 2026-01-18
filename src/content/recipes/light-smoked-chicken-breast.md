@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: western
 title: "鶏胸肉で作るさっぱりスモークチキン"
 recipeId: "light-smoked-chicken-breast"
 description: "鶏胸肉で作るさっぱりスモークチキンのレシピです。"

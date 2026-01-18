@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: japanese
 title: "卵白不要！自家製さつま揚げ"
 recipeId: "homemade-satsuma-age"
 description: "魚のすり身だけでぷりぷり食感に仕上げる、家庭向けの自家製さつま揚げです。"

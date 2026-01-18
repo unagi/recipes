@@ -2,6 +2,7 @@
 dist/
 # generated types
 .astro/
+src/data/recipe-index.json
 
 # dependencies
 node_modules/

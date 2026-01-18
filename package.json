@@ -4,13 +4,14 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run index:build && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "lint:text": "textlint \"src/content/recipes/**/*.md\""
+    "lint:text": "textlint \"src/content/recipes/**/*.md\"",
+    "index:build": "node scripts/build-recipe-index.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

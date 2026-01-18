@@ -7,7 +7,7 @@ recipeType: "dish"
 servings: 4
 cookTime: 20
 prepTime: 15
-tags: ["焼きそば", "富士宮", "ホットプレート", "麺"]
+tags: ["焼きそば", "郷土料理", "ホットプレート", "麺"]
 
 ingredients:
   - name: "焼きそばの麺"
