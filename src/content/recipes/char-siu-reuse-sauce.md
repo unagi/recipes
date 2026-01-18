@@ -6,8 +6,7 @@ description: "チャーシューと味玉を漬け込み、煮沸して継ぎ足
 recipeType: "sauce"
 cookTime: 110
 prepTime: 720
-tags: ["チャーシュー", "継ぎ足し", "タレ", "味玉"]
-
+tags: ["タレ"]
 ingredients:
   - name: "豚肩ロースorもも肉ブロック"
     amount: "500g"

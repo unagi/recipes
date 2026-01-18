@@ -7,8 +7,7 @@ recipeType: "dish"
 servings: 4
 cookTime: 20
 prepTime: 15
-tags: ["焼きそば", "郷土料理", "ホットプレート", "麺"]
-
+tags: ["麺料理", "郷土料理"]
 ingredients:
   - name: "焼きそばの麺"
     amount: "4玉"

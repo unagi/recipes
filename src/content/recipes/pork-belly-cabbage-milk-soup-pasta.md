@@ -7,8 +7,7 @@ recipeType: "dish"
 servings: 2
 cookTime: 25
 prepTime: 15
-tags: ["スープパスタ", "豚バラ", "ミルク", "野菜"]
-
+tags: ["麺料理", "豚バラ", "野菜"]
 ingredients:
   - name: "パスタ"
     amount: "200g"

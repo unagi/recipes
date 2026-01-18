@@ -7,8 +7,7 @@ recipeType: "dish"
 servings: 1
 cookTime: 10
 prepTime: 20
-tags: ["冷やし担々麺", "麺", "豆乳", "肉味噌"]
-
+tags: ["麺料理"]
 ingredients:
   - name: "中華麺"
     amount: "1玉"

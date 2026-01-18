@@ -70,7 +70,7 @@ equipment:
   - "キッチンペーパー"
   - "保存容器"
 
-tags: ["ベーコン", "燻製", "保存食", "手作り"]
+tags: ["保存食", "肉料理"]
 difficulty: "medium"
 publishedDate: 2024-01-16
 ---

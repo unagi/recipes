@@ -6,8 +6,7 @@ description: "鶏胸肉で作るさっぱりスモークチキンのレシピで
 recipeType: "ingredient"
 cookTime: 25
 prepTime: 1440
-tags: ["燻製", "鶏胸肉", "作り置き", "低脂肪"]
-
+tags: ["作り置き", "肉料理"]
 ingredients:
   - name: "鶏胸肉"
     amount: "2枚"

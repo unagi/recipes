@@ -7,8 +7,7 @@ recipeType: "dish"
 servings: 4
 cookTime: 15
 prepTime: 10
-tags: ["麻婆豆腐", "中華", "辛さ控えめ", "豆腐"]
-
+tags: ["その他の主菜"]
 ingredients:
   - name: "木綿豆腐"
     amount: "1丁"

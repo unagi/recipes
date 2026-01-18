@@ -6,8 +6,7 @@ description: "【駒ヶ根風】ソースカツ丼のタレのレシピです。
 recipeType: "sauce"
 cookTime: 10
 prepTime: 5
-tags: ["ソースカツ丼", "タレ", "郷土料理", "ソース"]
-
+tags: ["タレ", "郷土料理"]
 ingredients:
   - name: "ハチミツ"
     amount: "大さじ2.5"

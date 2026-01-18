@@ -6,8 +6,7 @@ description: "魚のすり身だけでぷりぷり食感に仕上げる、家庭
 recipeType: "ingredient"
 cookTime: 10
 prepTime: 30
-tags: ["さつま揚げ", "練り物", "揚げ物", "自家製"]
-
+tags: ["魚料理"]
 ingredients:
   - name: "いしもちなどの魚"
     amount: "300g"

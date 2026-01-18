@@ -6,8 +6,7 @@ description: "【かんたん・エコ】チャーシューのレシピです。
 recipeType: "ingredient"
 cookTime: 35
 prepTime: 720
-tags: ["チャーシュー", "作り置き", "低温熟成", "豚もも"]
-
+tags: ["作り置き", "肉料理"]
 ingredients:
   - name: "醤油"
     amount: "大さじ１"
