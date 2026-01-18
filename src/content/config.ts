@@ -15,8 +15,7 @@ const blog = defineCollection({
 // レシピコレクション（新規）
 const recipes = defineCollection({
 	type: 'content',
-	schema: (context) =>
-		z
+	schema: z
 			.object({
 			// 基本情報（必須）
 			title: z.string(),

@@ -57,6 +57,7 @@ const recipeImage = await resolveRecipeImage(recipe);
 const ogImage = recipeImage
 	? await getImage({ src: recipeImage, width: 1200, height: 600, format: 'webp' })
 	: undefined;
+const imageUrl = ogImage?.src ?? recipeImage?.src;
 
 const formatYield = (
 	yieldData?: CollectionEntry<'recipes'>['data']['yield']
@@ -127,7 +128,7 @@ function formatIngredientName(name: string): string {
 		<BaseHead
 			title={recipe.data.title}
 			description={recipe.data.description}
-			image={ogImage?.src ?? recipeImage?.src}
+			{...imageUrl && { image: imageUrl }}
 		/>
 	</head>
 	<body>
