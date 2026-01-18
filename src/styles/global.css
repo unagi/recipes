@@ -4,8 +4,8 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-/* Google Fonts: Klee One + Zen Maru Gothic + Material Icons */
-@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Maru+Gothic:wght@400;500;700&family=Material+Icons&display=swap');
+/* Google Fonts: Zen Maru Gothic + Material Icons */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Material+Icons&display=swap');
 
 :root {
 	/* アクセントカラー: 温かみのあるオレンジ */
@@ -30,7 +30,7 @@
 		rgba(var(--gray), 25%);
 }
 body {
-	font-family: "Zen Maru Gothic", "Klee One", "Noto Sans JP", "Noto Sans", system-ui, -apple-system, sans-serif;
+	font-family: "Zen Maru Gothic", system-ui, -apple-system, sans-serif;
 	font-weight: 500;
 	margin: 0;
 	padding: 0;
@@ -56,7 +56,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Zen Maru Gothic", "Klee One", "Noto Sans JP", "Noto Sans", system-ui, -apple-system, sans-serif;
+	font-family: "Zen Maru Gothic", system-ui, -apple-system, sans-serif;
 	margin: 0 0 0.5rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
