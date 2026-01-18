@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "ホルモンの漬けダレ（味噌味）"
 recipeId: "miso-hormone-marinade"
 description: "味噌ベースの漬けダレでホルモンを漬け込み、香ばしく焼き上げるレシピです。"
@@ -47,7 +47,7 @@ steps:
   - "[漬け込み対象（目安）]を加え、形が崩れない程度に優しく揉み込む"
   - "冷蔵庫で一晩以上置き、食べる直前に焼く"
 
-tags: ["味噌", "漬けダレ", "焼肉"]
+tags: ["タレ"]
 publishedDate: 2026-01-17
 ---
 

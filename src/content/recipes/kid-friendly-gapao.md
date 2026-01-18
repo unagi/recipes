@@ -7,8 +7,7 @@ recipeType: "dish"
 servings: 2
 cookTime: 15
 prepTime: 15
-tags: ["ガパオ", "タイ料理", "子ども向け", "挽肉"]
-
+tags: ["ごはん料理"]
 ingredients:
   - name: "豚 or 鶏の挽肉"
     amount: "200g"

@@ -1,13 +1,12 @@
 ---
-category: preserved-sauces
+category: chinese
 title: "【かんたん・エコ】チャーシュー"
 recipeId: "easy-eco-char-siu"
 description: "【かんたん・エコ】チャーシューのレシピです。"
 recipeType: "ingredient"
 cookTime: 35
 prepTime: 720
-tags: ["チャーシュー", "作り置き", "低温熟成", "豚もも"]
-
+tags: ["肉料理"]
 ingredients:
   - name: "醤油"
     amount: "大さじ１"

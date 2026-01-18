@@ -121,7 +121,7 @@ export function formatPrepTime(minutes: number): string {
  *
  * @example
  * formatCategory('japanese')          // => "和食"
- * formatCategory('preserved-sauces')  // => "保存食・タレ"
+ * formatCategory('sauce')  // => "タレ"
  */
 export function formatCategory(category: string): string {
   const categoryMap: Record<string, string> = {
@@ -129,7 +129,8 @@ export function formatCategory(category: string): string {
     western: '洋食',
     chinese: '中華',
     ethnic: 'エスニック',
-    'preserved-sauces': '保存食・タレ',
+    sauce: 'タレ',
+    'prep-base': '仕込み',
   };
 
   return categoryMap[category] ?? category;

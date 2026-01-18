@@ -1,13 +1,12 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "【駒ヶ根風】ソースカツ丼のタレ"
 recipeId: "sauce-katsu-don-sauce-komagane"
 description: "【駒ヶ根風】ソースカツ丼のタレのレシピです。"
 recipeType: "sauce"
 cookTime: 10
 prepTime: 5
-tags: ["ソースカツ丼", "タレ", "駒ヶ根", "ソース"]
-
+tags: ["タレ", "郷土料理"]
 ingredients:
   - name: "ハチミツ"
     amount: "大さじ2.5"

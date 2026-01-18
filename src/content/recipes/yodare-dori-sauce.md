@@ -1,13 +1,12 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "万能！よだれ鳥のタレ"
 recipeId: "yodare-dori-sauce"
 description: "万能！よだれ鳥のタレのレシピです。"
 recipeType: "sauce"
 cookTime: 5
 prepTime: 10
-tags: ["タレ", "中華", "よだれ鶏", "辛味"]
-
+tags: ["ドレッシング"]
 ingredients:
   - name: "にんにく(すりおろし)"
     amount: "1かけ"

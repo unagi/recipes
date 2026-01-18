@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: prep-base
 title: "昆布水"
 recipeId: "kombu-water"
 description: "冷蔵庫で抽出する昆布の旨味を引き出した出汁です。角煮や煮物のベースに使えます。"
@@ -9,8 +9,7 @@ yield:
   unit: "ml"
 cookTime: 5
 prepTime: 720
-tags: ["昆布水", "だし", "冷蔵抽出", "仕込み"]
-
+tags: ["だし"]
 ingredients:
   - name: "水"
     amount: "500ml"

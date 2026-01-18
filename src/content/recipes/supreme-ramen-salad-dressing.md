@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "至高のラーメンサラダドレッシング"
 recipeId: "supreme-ramen-salad-dressing"
 description: "香味油を使ってコクと香りを引き出す、ラーメンサラダ用の自家製ドレッシングです。"
@@ -64,7 +64,7 @@ steps:
   - "冷ました香味油を少しずつ加え、泡立てながら乳化させる"
   - "とろみが出たら、[ドレッシングの具]を加えて混ぜ合わせる"
 
-tags: ["ラーメンサラダ", "香味油", "ドレッシング"]
+tags: ["ドレッシング"]
 publishedDate: 2022-02-20
 ---
 

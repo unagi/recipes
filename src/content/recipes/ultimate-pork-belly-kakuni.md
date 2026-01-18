@@ -7,8 +7,7 @@ recipeType: "dish"
 servings: 3
 cookTime: 165
 prepTime: 20
-tags: ["角煮", "豚バラ", "煮込み", "和食"]
-
+tags: ["豚バラ", "肉料理"]
 ingredients:
   - name: "豚バラブロック"
     amount: "500〜600g"

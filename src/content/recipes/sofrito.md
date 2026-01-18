@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: prep-base
 title: "ソフリット（イタリアンベース）"
 recipeId: "sofrito"
 description: "たまねぎ、セロリ、にんじんをじっくり炒めた万能調味料。スープやソースのベースとして使えます。"
@@ -29,7 +29,7 @@ steps:
   - "野菜が飴色になり、甘みが出たら完成"
   - "粗熱を取り、密閉容器に入れて冷蔵・冷凍保存する"
 
-tags: ["イタリアン", "ベース", "冷凍保存可"]
+tags: ["ベース"]
 publishedDate: 2026-01-17
 ---
 

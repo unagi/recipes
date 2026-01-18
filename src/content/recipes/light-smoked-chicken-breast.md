@@ -1,13 +1,12 @@
 ---
-category: preserved-sauces
+category: western
 title: "鶏胸肉で作るさっぱりスモークチキン"
 recipeId: "light-smoked-chicken-breast"
 description: "鶏胸肉で作るさっぱりスモークチキンのレシピです。"
 recipeType: "ingredient"
 cookTime: 25
 prepTime: 1440
-tags: ["燻製", "鶏胸肉", "作り置き", "低脂肪"]
-
+tags: ["肉料理"]
 ingredients:
   - name: "鶏胸肉"
     amount: "2枚"

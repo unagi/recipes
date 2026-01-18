@@ -7,8 +7,7 @@ recipeType: "dish"
 servings: 2
 cookTime: 20
 prepTime: 15
-tags: ["パスタ", "エビマヨ", "簡単", "マヨネーズ"]
-
+tags: ["麺料理"]
 ingredients:
   - name: "スパゲッティ"
     amount: "200g"
