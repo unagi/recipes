@@ -15,8 +15,8 @@
 - `dish`か`ingredient`かで必須フィールドが変わる
 
 ### 3. ファイル作成
-- ファイル名: `src/content/recipes/{kebab-case}.md`
-- 下記のファイル命名規則に従う
+- ファイル名: `src/content/recipes/{recipeId}.md`
+- `recipeId`はURLにも使われるため、下記の命名規則に従う
 
 ### 4. frontmatterの記述
 - すべての必須フィールドを記入
@@ -48,7 +48,7 @@ npm run test:run
 
 ✅ **正しい例:**
 ```
-src/content/recipes/western/
+src/content/recipes/
 ├── cheese-curry-risotto.md
 └── cheese-curry-risotto.png    ← 同名
 ```
@@ -74,13 +74,14 @@ src/content/recipes/western/
 
 ---
 
-## ファイル命名規則
+## recipeId命名規則
 
 ### 基本ルール
 - **ケバブケース（kebab-case）を使用**
-- **英語表記**
-- **説明的で検索しやすい名前**
-- **最大3-4単語程度**
+- **英小文字・数字・ハイフンのみ**
+- **英語表記 or ローマ字表記**
+- **料理名ベースの簡潔な名前**
+- **最大40文字**
 
 ### 命名例
 
@@ -220,13 +221,24 @@ src/content/recipes/western/
     unit: "g"
   ```
 
+### `recipeId`（文字列）
+- **ルール**:
+  - `^[a-z0-9-]+$` のみ許可
+  - 最大40文字
+  - URLは `/recipes/<recipeId>/` となる
+- **例**:
+  ```yaml
+  recipeId: "spice-soup-curry"
+  recipeId: "okinawa-vegetable-soba"
+  ```
+
 ### `ingredients`（配列）
 - **ルール**:
   - **経口摂取するもののみ**（道具は`equipment`へ）
   - `name`: 材料名
   - `amount`: 分量（"500g"、"大さじ2"、"適量"など）
   - `group`（任意）: グループ名（材料が多い場合に使用）
-  - **他のレシピへのリンク**: 材料名の後ろに `（[レシピ](/path/to/recipe/)）` の形式でリンクを追加
+- **他のレシピへのリンク**: 材料名の後ろに `（[レシピ](/recipes/<recipeId>/)）` の形式でリンクを追加
     - ⚠️ URLの末尾に必ずスラッシュ `/` を含める
 - **例**:
   ```yaml
@@ -238,7 +250,7 @@ src/content/recipes/western/
     - name: "クミン"
       amount: "大さじ2"
       group: "スパイス"
-    - name: "昆布水（[レシピ](/preserved-sauces/kombu-water/)）"
+    - name: "昆布水（[レシピ](/recipes/kombu-water/)）"
       amount: "500ml"
   ```
 
@@ -272,6 +284,7 @@ src/content/recipes/western/
 
 #### frontmatter
 - [ ] `title`が記入されているか
+- [ ] `recipeId`が記入されているか
 - [ ] `description`が記入されているか
 - [ ] `recipeType`が正しく選択されているか
 - [ ] `dish`の場合、`servings`が記入されているか

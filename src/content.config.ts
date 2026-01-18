@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { RECIPE_ID_MAX_LENGTH, RECIPE_ID_PATTERN } from './utils/recipe-id';
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
@@ -22,6 +23,11 @@ const recipes = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		title: z.string(),
+		recipeId: z
+			.string()
+			.min(1)
+			.max(RECIPE_ID_MAX_LENGTH)
+			.regex(RECIPE_ID_PATTERN, 'recipeIdは英小文字・数字・ハイフンのみ使用できます'),
 		description: z.string(),
 		recipeType: z.string(),
 		publishedDate: z.coerce.date(),
