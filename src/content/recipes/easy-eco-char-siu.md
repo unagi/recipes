@@ -6,7 +6,7 @@ description: "【かんたん・エコ】チャーシューのレシピです。
 recipeType: "ingredient"
 cookTime: 35
 prepTime: 720
-tags: ["作り置き", "肉料理"]
+tags: ["肉料理"]
 ingredients:
   - name: "醤油"
     amount: "大さじ１"

@@ -6,7 +6,7 @@ description: "万能！よだれ鳥のタレのレシピです。"
 recipeType: "sauce"
 cookTime: 5
 prepTime: 10
-tags: ["タレ"]
+tags: ["ドレッシング"]
 ingredients:
   - name: "にんにく(すりおろし)"
     amount: "1かけ"

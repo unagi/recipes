@@ -130,7 +130,7 @@ export function formatCategory(category: string): string {
     chinese: '中華',
     ethnic: 'エスニック',
     sauce: 'タレ',
-    'prep-base': '仕込み・ベース',
+    'prep-base': '仕込み',
   };
 
   return categoryMap[category] ?? category;

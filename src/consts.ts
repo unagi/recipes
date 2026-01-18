@@ -11,7 +11,7 @@ export const CATEGORIES = {
 	chinese: { label: '中華', slug: 'chinese' },
 	ethnic: { label: 'エスニック', slug: 'ethnic' },
 	sauce: { label: 'タレ', slug: 'sauce' },
-	'prep-base': { label: '仕込み・ベース', slug: 'prep-base' },
+	'prep-base': { label: '仕込み', slug: 'prep-base' },
 } as const;
 
 export type CategoryKey = keyof typeof CATEGORIES;

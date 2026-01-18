@@ -162,7 +162,7 @@ describe('formatCategory', () => {
     expect(formatCategory('chinese')).toBe('中華');
     expect(formatCategory('ethnic')).toBe('エスニック');
     expect(formatCategory('sauce')).toBe('タレ');
-    expect(formatCategory('prep-base')).toBe('仕込み・ベース');
+    expect(formatCategory('prep-base')).toBe('仕込み');
   });
 
   test('未定義のカテゴリはそのまま返す', () => {

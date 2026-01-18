@@ -9,7 +9,7 @@ yield:
   unit: "ml"
 cookTime: 5
 prepTime: 720
-tags: ["仕込み"]
+tags: ["だし"]
 ingredients:
   - name: "水"
     amount: "500ml"

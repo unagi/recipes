@@ -70,7 +70,7 @@ equipment:
   - "キッチンペーパー"
   - "保存容器"
 
-tags: ["保存食", "肉料理"]
+tags: ["肉料理"]
 difficulty: "medium"
 publishedDate: 2024-01-16
 ---
