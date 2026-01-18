@@ -15,8 +15,9 @@ const blog = defineCollection({
 // レシピコレクション（新規）
 const recipes = defineCollection({
 	type: 'content',
-	schema: z
-		.object({
+	schema: (context) =>
+		z
+			.object({
 			// 基本情報（必須）
 			title: z.string(),
 			description: z.string().default(''),
@@ -76,20 +77,20 @@ const recipes = defineCollection({
 			// 公開日
 			publishedDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-		})
-		.refine(
-			(data) => {
-				// dish の場合のみ servings が必須
-				if (data.recipeType === 'dish') {
-					return data.servings !== undefined;
+			})
+			.refine(
+				(data) => {
+					// dish の場合のみ servings が必須
+					if (data.recipeType === 'dish') {
+						return data.servings !== undefined;
+					}
+					// それ以外（ingredient, sauce, stock等）は任意
+					return true;
+				},
+				{
+					message: 'dish タイプの場合は servings（人数）が必須です',
 				}
-				// それ以外（ingredient, sauce, stock等）は任意
-				return true;
-			},
-			{
-				message: 'dish タイプの場合は servings（人数）が必須です',
-			}
-		),
+			),
 });
 
 export const collections = {

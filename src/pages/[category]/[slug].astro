@@ -1,7 +1,10 @@
 ---
+import path from 'node:path';
+import type { ImageMetadata } from 'astro';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import { getImage, Image } from 'astro:assets';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import { formatCookingTime, formatPrepTime, formatCategory } from '../../utils/format';
 
@@ -22,8 +25,34 @@ type Props = {
 
 const { recipe } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(recipe);
-const recipeImage =
-	recipe.data.image ?? (remarkPluginFrontmatter.image as string | undefined);
+const recipeImageModules = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/content/recipes/**/*.{png,jpg,jpeg,webp,avif}'
+);
+
+const resolveRecipeImage = async (
+	entry: CollectionEntry<'recipes'>,
+	imagePath: string | undefined
+) => {
+	if (!imagePath || !entry.filePath) {
+		return undefined;
+	}
+
+	const entryDir = path.posix.dirname(`/${entry.filePath}`);
+	const resolvedPath = path.posix.resolve(entryDir, imagePath);
+	const loader = recipeImageModules[resolvedPath];
+	if (!loader) {
+		return undefined;
+	}
+
+	const module = await loader();
+	return module.default;
+};
+
+const frontmatterImage = remarkPluginFrontmatter.image as string | undefined;
+const recipeImage = await resolveRecipeImage(recipe, frontmatterImage);
+const ogImage = recipeImage
+	? await getImage({ src: recipeImage, width: 1200, height: 600, format: 'webp' })
+	: undefined;
 
 const formatYield = (
 	yieldData?: CollectionEntry<'recipes'>['data']['yield']
@@ -91,7 +120,11 @@ function formatIngredientName(name: string): string {
 <!doctype html>
 <html lang="ja">
 	<head>
-		<BaseHead title={recipe.data.title} description={recipe.data.description} image={recipeImage} />
+		<BaseHead
+			title={recipe.data.title}
+			description={recipe.data.description}
+			image={ogImage?.src ?? recipeImage?.src}
+		/>
 	</head>
 	<body>
 		<Header />
@@ -104,7 +137,12 @@ function formatIngredientName(name: string): string {
 				</header>
 				{recipeImage && (
 					<div class="recipe-hero">
-						<img src={recipeImage} alt={`${recipe.data.title}の写真`} loading="lazy" />
+						<Image
+							src={recipeImage}
+							alt={`${recipe.data.title}の写真`}
+							width={1200}
+							height={800}
+						/>
 					</div>
 				)}
 
