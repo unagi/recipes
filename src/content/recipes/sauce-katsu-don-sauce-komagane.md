@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "【駒ヶ根風】ソースカツ丼のタレ"
 recipeId: "sauce-katsu-don-sauce-komagane"
 description: "【駒ヶ根風】ソースカツ丼のタレのレシピです。"

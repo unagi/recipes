@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: prep-base
 title: "ソフリット（イタリアンベース）"
 recipeId: "sofrito"
 description: "たまねぎ、セロリ、にんじんをじっくり炒めた万能調味料。スープやソースのベースとして使えます。"

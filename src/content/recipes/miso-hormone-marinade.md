@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "ホルモンの漬けダレ（味噌味）"
 recipeId: "miso-hormone-marinade"
 description: "味噌ベースの漬けダレでホルモンを漬け込み、香ばしく焼き上げるレシピです。"

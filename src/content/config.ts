@@ -70,7 +70,7 @@ const recipes = defineCollection({
 			equipment: z.array(z.string()).default([]),
 
 			// カテゴリ・タグ
-			category: z.enum(['japanese', 'western', 'chinese', 'ethnic', 'preserved-sauces']),
+			category: z.enum(['japanese', 'western', 'chinese', 'ethnic', 'sauce', 'prep-base']),
 			tags: z.array(z.string()).default([]),
 
 			// 難易度

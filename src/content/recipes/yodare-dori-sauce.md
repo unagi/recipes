@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "万能！よだれ鳥のタレ"
 recipeId: "yodare-dori-sauce"
 description: "万能！よだれ鳥のタレのレシピです。"

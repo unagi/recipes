@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: western
 title: "イージースモーカーでつくる即席ベーコン"
 recipeId: "easy-smoker-bacon"
 description: "ソミュール液不要で、家庭用の燻製機で手軽にできるベーコンです。本格的なベーコン製造の複雑さを軽減し、家庭での実現可能性を高めました。"

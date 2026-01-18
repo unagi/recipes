@@ -10,7 +10,8 @@ export const CATEGORIES = {
 	western: { label: '洋食', slug: 'western' },
 	chinese: { label: '中華', slug: 'chinese' },
 	ethnic: { label: 'エスニック', slug: 'ethnic' },
-	'preserved-sauces': { label: '保存食・タレ', slug: 'preserved-sauces' },
+	sauce: { label: 'タレ', slug: 'sauce' },
+	'prep-base': { label: '仕込み・ベース', slug: 'prep-base' },
 } as const;
 
 export type CategoryKey = keyof typeof CATEGORIES;

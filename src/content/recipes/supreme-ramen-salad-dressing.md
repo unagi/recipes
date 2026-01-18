@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "至高のラーメンサラダドレッシング"
 recipeId: "supreme-ramen-salad-dressing"
 description: "香味油を使ってコクと香りを引き出す、ラーメンサラダ用の自家製ドレッシングです。"

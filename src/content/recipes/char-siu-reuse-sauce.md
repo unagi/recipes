@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: sauce
 title: "我が家のチャーシュー継ぎ足しタレ"
 recipeId: "char-siu-reuse-sauce"
 description: "チャーシューと味玉を漬け込み、煮沸して継ぎ足し保存できるタレのレシピです。"

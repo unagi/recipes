@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: prep-base
 title: "鶏がらスープ"
 recipeId: "chicken-stock"
 description: "鶏ガラから作る本格的な鶏がらスープ。様々な料理のベースとして使えます。"

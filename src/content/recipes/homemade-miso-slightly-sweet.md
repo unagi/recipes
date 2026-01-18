@@ -1,5 +1,5 @@
 ---
-category: preserved-sauces
+category: prep-base
 title: "手前味噌　〜やや甘め〜"
 recipeId: "homemade-miso-slightly-sweet"
 description: "手前味噌　〜やや甘め〜のレシピです。"
