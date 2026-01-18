@@ -61,6 +61,8 @@
 
 ```text
 ├── public/              # 静的アセット（画像等）
+├── docs/                # 人間向けドキュメント
+│   └── agents/          # エージェント向けドキュメント
 ├── src/
 │   ├── components/      # 再利用可能なコンポーネント
 │   │   ├── Recipe/     # レシピ表示コンポーネント群
@@ -123,7 +125,7 @@ npm run dev
 - `main` ブランチへのpush時に自動実行
 - テスト → ビルド → デプロイの順に実行
 
-詳細な設定手順は [DEPLOYMENT.md](./DEPLOYMENT.md) を参照してください。
+詳細な設定手順は [DEPLOYMENT.md](./docs/agents/DEPLOYMENT.md) を参照してください。
 
 ## 📚 開発ガイド
 
@@ -165,6 +167,14 @@ npm run test:run
 - 栄養情報、アレルギー情報
 
 詳細は [AGENTS.md - レシピデータの構造化](./AGENTS.md#レシピデータの構造化) を参照。
+
+## 📄 ドキュメント
+
+- [RECIPE_GUIDE.md](./docs/RECIPE_GUIDE.md) - レシピ作成の基本ガイド
+- [RECIPE_WRITING_TIPS.md](./docs/RECIPE_WRITING_TIPS.md) - 詳細な作成ガイド
+- [RECIPE_EXAMPLES.md](./docs/RECIPE_EXAMPLES.md) - 実例集
+- [SCHEMA.md](./docs/SCHEMA.md) - スキーマの詳細仕様
+- [TIME_EXPRESSION_RESEARCH.md](./docs/TIME_EXPRESSION_RESEARCH.md) - 時間表記の検討メモ
 
 ## 🤝 コントリビューション
 

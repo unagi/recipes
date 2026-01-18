@@ -57,7 +57,7 @@ Astroベースのレシピ共有サイト。
 
 テスト環境のセットアップ、テストケース作成ルール、トラブルシューティング等の詳細は以下を参照：
 
-**[TESTING.md](./TESTING.md)** - テスト開発ガイド（セットアップ、TDD原則、テストケース例、トラブルシューティング）
+**[TESTING.md](./docs/agents/TESTING.md)** - テスト開発ガイド（セットアップ、TDD原則、テストケース例、トラブルシューティング）
 
 ---
 
@@ -481,7 +481,7 @@ recipes.ymgch.org
 6. https://recipes.ymgch.org で公開
 
 **詳細な設定手順:**
-- DNS設定、トラブルシューティング等は [DEPLOYMENT.md](./DEPLOYMENT.md) を参照
+- DNS設定、トラブルシューティング等は [DEPLOYMENT.md](./docs/agents/DEPLOYMENT.md) を参照
 
 ---
 
