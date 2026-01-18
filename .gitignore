@@ -20,5 +20,8 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Windows Explorer Zone.Identifier (alternate data stream on Windows, file suffix on Linux)
+*:Zone.Identifier
+
 # jetbrains setting folder
 .idea/
