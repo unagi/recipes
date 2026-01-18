@@ -85,14 +85,13 @@ const recipesWithImages = await Promise.all(
 				<ul class="recipe-list">
 					{recipesWithImages.map(({ recipe, image }) => {
 						const displayTags = recipe.data.tags.slice(0, 3);
-						const [category, slug] = recipe.id.split('/');
 						const hasPrepTime = recipe.data.prepTime && recipe.data.prepTime > 0;
 						const hasCookTime = recipe.data.cookTime && recipe.data.cookTime > 0;
 						const cardImage = image;
 
 						return (
 							<li class="recipe-card">
-								<a href={`/${category}/${slug}/`} class="card-link">
+								<a href={`/recipes/${recipe.data.recipeId}/`} class="card-link">
 									{cardImage ? (
 										<Image
 											src={cardImage}

@@ -1,0 +1,69 @@
+---
+category: chinese
+title: "【鉄人風】クリーミーな冷やし担々麺"
+recipeId: "creamy-hiyashi-tantanmen"
+description: "【鉄人風】クリーミーな冷やし担々麺のレシピです。"
+recipeType: "dish"
+servings: 1
+cookTime: 10
+prepTime: 20
+tags: ["冷やし担々麺", "麺", "豆乳", "肉味噌"]
+
+ingredients:
+  - name: "中華麺"
+    amount: "1玉"
+  - name: "水菜などトッピング野菜"
+    amount: "適量"
+  - name: "長ネギのみじん切り"
+    amount: "大さじ2"
+  - name: "ラー油"
+    amount: "大さじ2"
+  - name: "豚挽き肉"
+    amount: "50g"
+    group: "肉味噌"
+  - name: "おろし生姜"
+    amount: "小さじ1"
+    group: "肉味噌"
+  - name: "甜麺醤(テンメンジャン)"
+    amount: "大さじ1/2"
+    group: "肉味噌"
+  - name: "紹興酒"
+    amount: "小さじ1"
+    group: "肉味噌"
+  - name: "醤油"
+    amount: "小さじ1"
+    group: "肉味噌"
+  - name: "胡椒"
+    amount: "少々"
+    group: "肉味噌"
+  - name: "豆乳(無調整)"
+    amount: "1カップ"
+    group: "スープ"
+  - name: "鶏ガラスープ"
+    amount: "1/4カップ"
+    group: "スープ"
+  - name: "芝麻醤"
+    amount: "大さじ2"
+    group: "スープ"
+  - name: "醤油"
+    amount: "大さじ2"
+    group: "スープ"
+  - name: "加糖練乳"
+    amount: "大さじ1"
+    group: "スープ"
+  - name: "酢"
+    amount: "小さじ1"
+    group: "スープ"
+
+steps:
+  - "スープの材料をよく混ぜ、冷蔵庫で冷やしておきます。 解けにくいので、豆乳・スープ以外は先によく解いておきます。"
+  - "豚挽き肉とおろし生姜を炒め、そぼろ状になったらその他の調味料を加え、手早く炒め、冷ましておきます。"
+  - "中華麺を茹で、流水でぬめりを取り、よく水気を切ります。"
+  - "器に麺、スープを入れてラー油をまわしがけ。最後に肉味噌や具をトッピングし、完成です！"
+
+publishedDate: 2016-07-03
+---
+
+## レシピのポイント
+
+豆乳と鶏ガラスープの比率はお好みで調整しても大丈夫です。クリーミー好きなので、この比率にしています。ラー油をごま油に変えたり、しょうがを抜いたりすると、子供も食べれる辛さになります。

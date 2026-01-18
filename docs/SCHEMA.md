@@ -28,6 +28,7 @@
 | フィールド | 型 | 必須 | 説明 | 例 |
 |-----------|-----|-----|------|-----|
 | `title` | `string` | ✅ | レシピのタイトル | "【本格】焦がしたまねぎのシンプルパスタ" |
+| `recipeId` | `string` | ✅ | URL用の識別子 | "spice-soup-curry" |
 | `description` | `string` | ✅ | レシピの説明文 | "コンソメ不使用だけれど旨味十分..." |
 
 **注意**: `description` は必須ですが、空文字でもOK（デフォルト値: `""`）
@@ -218,6 +219,7 @@ equipment:
 
 ```yaml
 ---
+recipeId: "caramelized-onion-pasta"
 title: "【本格】焦がしたまねぎのシンプルパスタ"
 description: "コンソメ不使用だけれど旨味十分。一食100円位の節約レシピですが、シンプルでおいしい、メインディッシュの引き立て役です。"
 recipeType: "dish"
@@ -259,6 +261,7 @@ publishedDate: 2024-01-16
 
 ```yaml
 ---
+recipeId: "easy-smoker-bacon"
 title: "イージースモーカーでつくる即席ベーコン"
 description: "ソミュール液不要で、家庭用の燻製機で手軽にできるベーコンです。"
 recipeType: "ingredient"
@@ -338,6 +341,14 @@ cost?: {
 
 ## スキーマ変更履歴
 
+### v1.4 (2024-01-16) - recipeId追加
+
+- **recipeIdフィールドを追加**（必須）
+  - URL `/recipes/<recipeId>/` の識別子として使用
+  - 文字種と最大長をバリデーション
+- **データ配置の変更**
+  - `src/content/recipes/` 配下をフラット化
+
 ### v1.3 (2024-01-16) - equipmentフィールド追加とバリデーション修正
 
 - **equipmentフィールドを追加**（任意）
@@ -399,3 +410,7 @@ cost?: {
 - [Schema.org - Recipe](https://schema.org/Recipe)
 - [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/)
 - [Zod Documentation](https://zod.dev/)
+**recipeIdのルール**:
+- 文字種: 英小文字・数字・ハイフンのみ
+- 最大40文字
+- URLは `/recipes/<recipeId>/`

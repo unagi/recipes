@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { RECIPE_ID_MAX_LENGTH, RECIPE_ID_PATTERN } from '../utils/recipe-id';
 
 // ブログコレクション（既存）
 const blog = defineCollection({
@@ -19,6 +20,11 @@ const recipes = defineCollection({
 			.object({
 			// 基本情報（必須）
 			title: z.string(),
+			recipeId: z
+				.string()
+				.min(1)
+				.max(RECIPE_ID_MAX_LENGTH)
+				.regex(RECIPE_ID_PATTERN, 'recipeIdは英小文字・数字・ハイフンのみ使用できます'),
 			description: z.string().default(''),
 
 			// レシピタイプ（必須）
